@@ -1,17 +1,19 @@
 
 import { createBrowserRouter } from "react-router-dom";
-import Home from "../pages/Home/Home";
-import Layout from "../Layouts/Layout";
-import AuthLayout from "../Layouts/AuthLayout";
-import Login from "../pages/Auth/Login";
-import Register from "../pages/Auth/Register";
-import NotFound from "../pages/notFound/NotFound";
+import Home from "../../pages/Home/Home";
+import Layout from "../../layouts/Layout";
+import AuthLayout from "../../layouts/AuthLayout";
+import Login from "../../pages/Auth/Login";
+import Register from "../../pages/Auth/Register";
+import NotFound from "../../pages/notFound/NotFound";
+import AllSuggestions from "../../pages/AllSuggestions/AllSuggestions";
 
 export const routes = createBrowserRouter([
     {
         path: "/", element: <Layout />, children: [
             { path: "/", element: <Home /> },
             { path: "*", element: <NotFound /> },
+            { path: "/suggestions", element: <AllSuggestions /> },
         ]
     },
 

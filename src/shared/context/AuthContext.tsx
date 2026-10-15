@@ -1,7 +1,7 @@
 import { createContext, useState } from "react"
-import type { IAuthContext, IAuthContextChildren } from "../interfaces/authContext";
+import type { IAuthContext, IAuthContextChildren } from "../../interfaces/authContext";
 
-export  const authContext = createContext<IAuthContext>({
+export const authContext = createContext<IAuthContext>({
     token : "" , 
     login(token:string) {},
     logout() {},
@@ -20,9 +20,6 @@ export default function AuthContext({children} : IAuthContextChildren) {
     function logout() {
          localStorage.removeItem("token")
     }
-
-    
-
 
   return (<>
     <authContext.Provider value={{token , login , logout} }>

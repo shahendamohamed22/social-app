@@ -5,10 +5,12 @@ import Navbar from "../components/Navbar/Navbar";
 
 export default function Layout() {
   return (
-  <>
-  <Navbar />
-  <Outlet />
-  </>
+    <>
+      <Navbar />
+      <main className="py-5 px-8">
+        <Outlet />
+      </main>
+    </>
 
   )
 }

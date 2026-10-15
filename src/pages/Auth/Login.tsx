@@ -4,11 +4,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "../../validation/loginSchema";
 import { loginDefaultValues } from "../../defaultValues/defaultValues";
 import axios, { isAxiosError } from "axios";
-import base_Url from "../../api/baseURL";
+import base_Url from "../../shared/api/baseURL";
 import { Spinner, toast } from "@heroui/react";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { authContext } from "../../context/AuthContext";
+import { authContext } from "../../shared/context/AuthContext";
 
 export default function Login() {
 
@@ -87,7 +87,7 @@ export default function Login() {
 
         <button
           type="submit"
-          className=""
+          className="w-full"
         >
           {isLoading ? <div className="flex items-center justify-center gap-2"><Spinner color="current" /> ...Signing in</div> : " Sign in"}
 

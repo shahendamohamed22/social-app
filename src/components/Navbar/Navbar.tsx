@@ -1,4 +1,5 @@
 
+import { useContext } from "react";
 import {
   FiHome,
   FiCompass,
@@ -7,6 +8,7 @@ import {
   FiUser,
 } from "react-icons/fi";
 import { Link, NavLink } from "react-router-dom";
+import { profileContext } from "../../shared/context/MyProfileContext";
 
 const navLinks = [
   { label: "Home", icon: FiHome, to: "/" },
@@ -15,6 +17,7 @@ const navLinks = [
 ];
 
 function Navbar() {
+  const { profileData } = useContext(profileContext)
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-5">
@@ -34,7 +37,7 @@ function Navbar() {
         <div className="flex items-center gap-1 sm:gap-2">
           {navLinks.map(({ label, icon: Icon, to }) => (
             <NavLink
-              key={label} 
+              key={label}
               to={to}
               aria-label={label}
               title={label}
@@ -45,7 +48,7 @@ function Navbar() {
           ))}
 
           {/* Notifications */}
-               <Link
+          <Link
             to="/profile"
             aria-label="Profile"
             className="relative ml-1 rounded-xl flex size-10 items-center justify-center round hover:bg-primary/10 hover:text-primary text-heading transition "
@@ -60,7 +63,17 @@ function Navbar() {
             aria-label="Profile"
             className="ml-1 flex size-10 items-center justify-center rounded-full border-2 border-primary/20 bg-input text-heading transition hover:border-primary"
           >
-            <FiUser size={21} />
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-primary/10 text-primary">
+              {profileData?.photo ? (
+                <img
+                  src={profileData.photo}
+                  alt={profileData.name}
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <FiUser size={21} />
+              )}
+            </div>
           </Link>
         </div>
       </div>
