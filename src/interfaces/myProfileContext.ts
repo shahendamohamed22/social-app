@@ -6,5 +6,5 @@ export interface IProfileContextChildren {
 }
 
 export interface IProfileContext {
-   profileData : IProfile | undefined
+   myProfileData : IProfile | undefined
 }

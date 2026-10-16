@@ -24,7 +24,7 @@ const links = [
 export default function Sidebar() {
 
   const {logout} = useContext(authContext);
-  const {profileData } = useContext(profileContext)
+  const {myProfileData } = useContext(profileContext)
   const navigate = useNavigate();
 
   function handleLogout() {
@@ -46,10 +46,10 @@ export default function Sidebar() {
         }
       >
         <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-primary/10 text-primary">
-          {profileData?.photo ? (
+          {myProfileData?.photo ? (
             <img
-              src={profileData.photo}
-              alt={profileData.name}
+              src={myProfileData.photo}
+              alt={myProfileData.name}
               className="h-full w-full object-cover"
             />
           ) : (
@@ -59,10 +59,10 @@ export default function Sidebar() {
 
         <div className="min-w-0 flex-1">
           <h3 className="truncate text-sm font-semibold">
-            {profileData?.name ?? "Your profileData"}
+            {myProfileData?.name ?? "Your ProfileData"}
           </h3>
           <p className="mt-1 truncate text-xs text-paragraph">
-            {profileData?.username ? `@${profileData.username}` : "View your profileData"}
+            {myProfileData?.username ? `@${myProfileData.username}` : "View your profileData"}
           </p>
         </div>
 

@@ -4,9 +4,7 @@ import { createContext} from "react";
 import type { IProfileContext, IProfileContextChildren } from "../../interfaces/myProfileContext";
 
 export const profileContext = createContext<IProfileContext>({
-    profileData : undefined,
-   
-
+    myProfileData : undefined,
 })
 
 export default function MyProfileContext({ children } : IProfileContextChildren ) {
@@ -22,10 +20,10 @@ export default function MyProfileContext({ children } : IProfileContextChildren 
 
     console.log(data?.data.data.user);
     
-    const profileData = data?.data.data.user
+    const myProfileData = data?.data.data.user
 
     return (
-        <profileContext.Provider value={{profileData}}>
+        <profileContext.Provider value={{myProfileData}}>
             {children}
         </profileContext.Provider>
     )

@@ -1,23 +1,29 @@
-import { FiUserPlus } from "react-icons/fi";
+import { Link } from "react-router-dom";
 import type { ISuggestionCardProps } from "../../../interfaces/suggestion";
+import useFollow from "../../../shared/Hooks/useFollowUser";
+import { Spinner } from "@heroui/react";
+import { FaPlus } from "react-icons/fa";
 
-export default function AllSuggestionsCard({suggestion} : ISuggestionCardProps) {
+export default function AllSuggestionsCard({ suggestion }: ISuggestionCardProps) {
+    const { follow, isPending, isSuccess } = useFollow(suggestion._id)
+
     return (
-
         <div className=" group flex flex-col items-center rounded-2xl border border-primary/10 bg-card p-5 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg">
             {/* Profile Photo */}
             <div className="mb-3 h-20 w-20 overflow-hidden rounded-full bg-background ring-4 ring-primary/10 transition-transform duration-300 group-hover:scale-105">
-                <img
-                    src={suggestion.photo}
-                    alt={suggestion.name}
-                    className="h-full w-full object-cover"
-                />
+                <Link to={`/profile/${suggestion._id}`}>
+                    <img
+                        src={suggestion.photo}
+                        alt={suggestion.name}
+                        className="h-full w-full object-cover"
+                    />
+                </Link>
             </div>
 
             {/* User Info */}
-            <h3 className="max-w-full truncate text-base font-semibold text-heading">
+           <Link to={`/profile/${suggestion._id}`} className="max-w-full truncate text-base font-semibold text-heading">
                 {suggestion.name}
-            </h3>
+            </Link>
 
             <p className="mt-1 max-w-full truncate text-sm text-paragraph">
                 @{suggestion.username}
@@ -45,10 +51,12 @@ export default function AllSuggestionsCard({suggestion} : ISuggestionCardProps) 
             {/* Follow Button */}
             <button
                 type="button"
+                disabled={isPending || isSuccess}
+                onClick={() => follow()}
                 className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-white shadow-none transition-all duration-300 hover:opacity-90 active:scale-95"
             >
-                <FiUserPlus size={17} />
-                Follow
+                {isPending ? <div className="flex items-center justify-center gap-2"><Spinner color="current" /> ...following</div> : isSuccess ? "following" : <><FaPlus /> <h3>Follow</h3></>}
+
             </button>
         </div>
     )

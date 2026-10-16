@@ -12,12 +12,10 @@ import { profileContext } from "../../shared/context/MyProfileContext";
 
 const navLinks = [
   { label: "Home", icon: FiHome, to: "/" },
-  { label: "Explore", icon: FiCompass, to: "/explore" },
-  { label: "Messages", icon: FiMessageCircle, to: "/messages" },
 ];
 
 function Navbar() {
-  const { profileData } = useContext(profileContext)
+  const { myProfileData } = useContext(profileContext)
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-5">
@@ -64,10 +62,10 @@ function Navbar() {
             className="ml-1 flex size-10 items-center justify-center rounded-full border-2 border-primary/20 bg-input text-heading transition hover:border-primary"
           >
             <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-primary/10 text-primary">
-              {profileData?.photo ? (
+              {myProfileData?.photo ? (
                 <img
-                  src={profileData.photo}
-                  alt={profileData.name}
+                  src={myProfileData.photo}
+                  alt={myProfileData.name}
                   className="h-full w-full object-cover"
                 />
               ) : (

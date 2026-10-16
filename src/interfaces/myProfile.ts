@@ -1,4 +1,6 @@
-export interface IProfile {
+import type { IUser } from "./userProfile"
+
+export interface IMyProfile {
   _id: string
   name: string
   username: string
@@ -7,15 +9,18 @@ export interface IProfile {
   gender: string
   photo: string
   cover: string
-  bookmarks: any[]
-  followers: any[]
-  following: any[]
+  bookmarks: string[]
+  followers: string[]
+  following: string[]
   createdAt: string
   followersCount: number
   followingCount: number
   bookmarksCount: number
   id: string
 }
+
 export interface IProfileProps {
-  profile : IProfile
+  profile : IMyProfile | IUser
+  isFollow?: boolean
+  isMyProfile?:boolean
 }

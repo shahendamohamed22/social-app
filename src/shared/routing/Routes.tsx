@@ -7,13 +7,16 @@ import Login from "../../pages/Auth/Login";
 import Register from "../../pages/Auth/Register";
 import NotFound from "../../pages/notFound/NotFound";
 import AllSuggestions from "../../pages/AllSuggestions/AllSuggestions";
+import Profile from "../../pages/Profile/Profile";
 
 export const routes = createBrowserRouter([
     {
         path: "/", element: <Layout />, children: [
             { path: "/", element: <Home /> },
-            { path: "*", element: <NotFound /> },
             { path: "/suggestions", element: <AllSuggestions /> },
+            { path: "/profile", element: <Profile /> },
+            { path: "/profile/:userId", element: <Profile /> },
+            { path: "*", element: <NotFound /> },
         ]
     },
 

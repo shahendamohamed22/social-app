@@ -5,7 +5,12 @@ import {
     FaRegCommentDots,
     FaShare,
     FaRegBookmark,
+    FaHeart,
+    FaBookmark,
 } from "react-icons/fa";
+import useLike from "../../../shared/Hooks/useLike";
+import useBookmark from "../../../shared/Hooks/useBookMark";
+import { Link } from "react-router-dom";
 
 export default function PostCard({ post }: IPostCardProps) {
     const postDate = new Date(post.createdAt).toLocaleDateString("en-US", {
@@ -14,20 +19,25 @@ export default function PostCard({ post }: IPostCardProps) {
         year: "numeric",
     });
 
+    const { like, likeIsPending, likeIsSuccess } = useLike(post._id)
+    const { bookmark, bookmarkIsPending, bookmarkIsSuccess } = useBookmark(post._id)
+
     return (
         <article className="group overflow-hidden rounded-2xl border border-primary/10 bg-card shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-md mb-3">
             {/* Post Header */}
             <div className="flex items-center gap-3 p-4 sm:p-5">
-                <img
-                    src={post.user.photo}
-                    alt={post.user.name}
-                    className="h-12 w-12 shrink-0 rounded-full object-cover ring-2 ring-primary/10"
-                />
+                <Link to={`/profile/${post.user._id}`} >
+                    <img
+                        src={post.user.photo}
+                        alt={post.user.name}
+                        className="h-12 w-12 shrink-0 rounded-full object-cover ring-2 ring-primary/10"
+                    />
+                </Link>
 
                 <div className="min-w-0 flex-1">
-                    <h3 className="truncate font-semibold text-heading">
+                    <Link to={`/profile/${post.user._id}`} className="truncate font-semibold text-heading">
                         {post.user.name}
-                    </h3>
+                    </Link>
 
                     <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-paragraph">
                         <span>@{post.user.username}</span>
@@ -39,6 +49,7 @@ export default function PostCard({ post }: IPostCardProps) {
                 <span className="shrink-0 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium capitalize text-primary">
                     {post.privacy}
                 </span>
+
             </div>
 
             {/* Post Body */}
@@ -77,15 +88,15 @@ export default function PostCard({ post }: IPostCardProps) {
             <div className="flex items-center gap-1 px-3 py-2 sm:px-4">
                 <button
                     type="button"
-                    className="!flex !min-w-0 !flex-1 !items-center !justify-center !gap-2 !rounded-xl !bg-transparent !px-2 !py-3 !text-sm !font-medium !text-paragraph transition hover:!bg-primary/10 hover:!text-primary"
+                    onClick={() => like()}
+                    className={`flex min-w-0 flex-1 items-center justify-center gap-2 rounded-xl bg-transparent px-2 py-3 text-sm font-medium ${likeIsSuccess ? "text-primary" : "text-paragraph"}  transition hover:bg-primary/10 hover:text-primary`}
                 >
-                    <FaRegHeart size={16} />
-                    <span>Like</span>
+                    {likeIsSuccess ? <><FaHeart size={16} /><span>Liked</span></> : <><FaRegHeart size={16} /><span>Like</span></>}
                 </button>
 
                 <button
                     type="button"
-                    className="!flex !min-w-0 !flex-1 !items-center !justify-center !gap-2 !rounded-xl !bg-transparent !px-2 !py-3 !text-sm !font-medium !text-paragraph transition hover:!bg-primary/10 hover:!text-primary"
+                    className="flex min-w-0 flex-1 items-center justify-center gap-2 rounded-xl bg-transparent px-2 py-3 text-sm font-medium text-paragraph transition hover:bg-primary/10 hover:text-primary"
                 >
                     <FaRegCommentDots size={16} />
                     <span>Comment</span>
@@ -93,7 +104,7 @@ export default function PostCard({ post }: IPostCardProps) {
 
                 <button
                     type="button"
-                    className="!flex !min-w-0 !flex-1 !items-center !justify-center !gap-2 !rounded-xl !bg-transparent !px-2 !py-3 !text-sm !font-medium !text-paragraph transition hover:!bg-primary/10 hover:!text-primary"
+                    className="flex min-w-0 flex-1 items-center justify-center gap-2 rounded-xl bg-transparent px-2 py-3 text-sm font-medium text-paragraph transition hover:bg-primary/10 hover:text-primary"
                 >
                     <FaShare size={15} />
                     <span>Share</span>
@@ -102,9 +113,10 @@ export default function PostCard({ post }: IPostCardProps) {
                 <button
                     type="button"
                     aria-label="Bookmark post"
-                    className="!flex !shrink-0 !items-center !justify-center !rounded-xl !bg-transparent !p-3 !text-paragraph transition hover:!bg-primary/10 hover:!text-primary"
+                    onClick={() => bookmark()}
+                    className={`flex shrink-0 items-center justify-center rounded-xl bg-transparent p-3 ${bookmarkIsSuccess ? "text-primary" : "text-paragraph"}  transition hover:bg-primary/10 hover:text-primary`}
                 >
-                    <FaRegBookmark size={16} />
+                    {bookmarkIsSuccess ? <FaBookmark size={16} /> : <FaRegBookmark size={16} />}
                 </button>
             </div>
 

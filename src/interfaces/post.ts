@@ -2,7 +2,7 @@ export interface IPost {
   _id: string
   body: string
   privacy: string
-  user: IUser
+  user: IUserPost
   sharedPost: any
   likes: any[]
   createdAt: string
@@ -16,7 +16,7 @@ export interface IPost {
   bookmarked: boolean
 }
 
-export interface IUser {
+export interface IUserPost {
   _id: string
   name: string
   username: string
@@ -42,4 +42,11 @@ export interface ICommentCreator {
 
 export interface IPostCardProps {
   post : IPost
+}
+
+//*************** 
+
+export interface IPostsProps {
+  id : string | undefined
+  isMyProfile? : boolean 
 }

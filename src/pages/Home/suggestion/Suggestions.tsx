@@ -18,11 +18,11 @@ export default function Suggestions() {
   })
 
   if (isLoading) {
-    return [0, 1, 2, 3].map((i) => <div key={i} className="flex items-center gap-4 mt-4 p-3">
-      <Skeleton className="h-12 w-12 shrink-0 rounded-full bg-gray-300" />
+    return [0, 1, 2, 3].map((i) => <div key={i} className="flex items-center gap-4 mt-4 p-3 bg-card rounded-2xl">
+      <Skeleton className="h-12 w-12 shrink-0 rounded-full " />
       <div className="flex-1 space-y-2 gap-3">
-        <Skeleton className="h-3 w-full rounded-lg bg-gray-300" />
-        <Skeleton className="h-3 w-full rounded-lg bg-gray-300" />
+        <Skeleton className="h-3 w-full rounded-lg " />
+        <Skeleton className="h-3 w-full rounded-lg " />
       </div>
     </div>)
   }
