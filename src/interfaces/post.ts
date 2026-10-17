@@ -1,3 +1,5 @@
+import type { IComment } from "./comment"
+
 export interface IPost {
   _id: string
   body: string
@@ -53,7 +55,7 @@ export interface IPostsProps {
 
 //***************
 
-export interface ISavedCardProps{
+export interface IPostProps{
     post : IPost
-  
+    comments? : IComment[]
 }

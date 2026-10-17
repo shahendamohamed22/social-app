@@ -1,9 +1,9 @@
-import type { ISavedCardProps } from "../../../interfaces/post";
+import type { IPostProps } from "../../../interfaces/post";
 import { GoBookmarkSlashFill } from "react-icons/go";
 import useBookmark from "../../../shared/Hooks/useBookMark";
 import { Spinner } from "@heroui/react";
 
-export default function SavedCard({ post }: ISavedCardProps) {
+export default function SavedCard({ post }: IPostProps) {
 
     const { bookmark , bookmarkIsPending } = useBookmark()
     

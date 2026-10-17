@@ -5,8 +5,6 @@ import { profileContext } from "../context/MyProfileContext";
 import { useContext } from "react";
 import type { IUpdatePost } from "../../interfaces/postActions";
 
-
-
 export default function usePostActions() {
 
     const { myProfileData } = useContext(profileContext)

@@ -70,27 +70,28 @@ export default function PostCard({ post }: IPostCardProps) {
                 <CreatePost isEdit={isEdit} setIsEdit={SetIsEdit} body={post.body} image={post.image} postId={post._id} />
                 : <article className="group overflow-hidden rounded-2xl border border-primary/10 bg-card shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-md mb-3">
                     {/* Post Header */}
-                    <div className="flex items-center gap-3 p-4 sm:p-5">
-                        <Link to={`/profile/${post.user._id}`} >
-                            <img
-                                src={post.user.photo}
-                                alt={post.user.name}
-                                className="h-12 w-12 shrink-0 rounded-full object-cover ring-2 ring-primary/10"
-                            />
-                        </Link>
-
-                        <div className="min-w-0 flex-1">
-                            <Link to={`/profile/${post.user._id}`} className="truncate font-semibold text-heading">
-                                {post.user.name}
+                    <div className="flex items-center justify-between gap-3 p-4 sm:p-5">
+                        <div className="flex items-center gap-3">
+                            <Link to={`/profile/${post.user._id}`} >
+                                <img
+                                    src={post.user.photo}
+                                    alt={post.user.name}
+                                    className="h-12 w-12 shrink-0 rounded-full object-cover ring-2 ring-primary/10"
+                                />
                             </Link>
 
-                            <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-paragraph">
-                                <span>@{post.user.username}</span>
-                                <span>·</span>
-                                <time dateTime={post.createdAt}>{postDate}</time>
+                            <div className="min-w-0 flex-1">
+                                <Link to={`/profile/${post.user._id}`} className="truncate font-semibold text-heading">
+                                    {post.user.name}
+                                </Link>
+
+                                <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-paragraph">
+                                    <span>@{post.user.username}</span>
+                                    <span>·</span>
+                                    <time dateTime={post.createdAt}>{postDate}</time>
+                                </div>
                             </div>
                         </div>
-
 
                         {isMyProfile && <div className="relative">
                             <button className="w-10 h-10 rounded-xl flex items-center justify-center hover:bg-primary/10
@@ -118,26 +119,28 @@ export default function PostCard({ post }: IPostCardProps) {
                         </div>}
 
 
+
                     </div>
 
                     {/* Post Body */}
-                    {post.body && (
-                        <p className="whitespace-pre-wrap break-words px-4 pb-4 leading-7 text-heading sm:px-5">
-                            {post.body}
-                        </p>
-                    )}
+                    <Link to={`/posts/${post._id}`}>
+                        {post.body && (
+                            <p className="whitespace-pre-wrap break-words px-4 pb-4 leading-7 text-heading sm:px-5">
+                                {post.body}
+                            </p>
+                        )}
 
-                    {/* Post Image */}
-                    {post.image && (
-                        <div className="overflow-hidden bg-background">
-                            <img
-                                src={post.image}
-                                alt="Post"
-                                className="max-h-[500px] w-full object-contain transition duration-500 group-hover:scale-[1.01]"
-                            />
-                        </div>
-                    )}
-
+                        {/* Post Image */}
+                        {post.image && (
+                            <div className="overflow-hidden bg-background">
+                                <img
+                                    src={post.image}
+                                    alt="Post"
+                                    className="max-h-[500px] w-full object-contain transition duration-500 group-hover:scale-[1.01]"
+                                />
+                            </div>
+                        )}
+                    </Link>
                     {/* Likes and Comments Summary */}
                     <div className="flex items-center justify-between gap-3 px-4 py-3 text-sm text-paragraph sm:px-5">
                         <span className="flex items-center gap-1.5">
@@ -217,7 +220,7 @@ export default function PostCard({ post }: IPostCardProps) {
                             </div>
                         </div>
                     )}
-                </article>}
+                </article >}
 
         </>
     );
