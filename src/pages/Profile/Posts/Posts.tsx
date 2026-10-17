@@ -16,9 +16,7 @@ export default function Posts({ id, isMyProfile }: IPostsProps) {
         queryFn: getUserPosts
     })
 
-    const posts = data?.data.data.posts
- console.log(posts);
- 
+    const posts = data?.data.data.posts    
     if (isLoading) {
         return <div className="space-y-4 rounded-2xl bg-card p-4">
             <div className="flex items-center gap-3">
@@ -42,10 +40,7 @@ export default function Posts({ id, isMyProfile }: IPostsProps) {
     return (
         <>
             {isMyProfile && <CreatePost />}
-
-            {/* {posts.length == 0 ? <p className="text-paragraph">there is no posts yet</p>
-                : (posts.map((post: IPost) => <PostCard key={post._id} post={post} />))} */}
-
+    
             {!isLoading && posts.length ? (posts.map((post: IPost) => <PostCard key={post._id} post={post} />))
                 : <p className="text-paragraph text-center mt-6 font-medium">"There is no posts yet .."</p>}
 

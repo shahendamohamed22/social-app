@@ -48,5 +48,5 @@ export interface IPostCardProps {
 
 export interface IPostsProps {
   id : string | undefined
-  isMyProfile? : boolean 
+  isMyProfile? : boolean | undefined
 }

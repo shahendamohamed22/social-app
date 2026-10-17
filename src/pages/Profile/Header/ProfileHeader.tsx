@@ -1,4 +1,4 @@
-import { FiBookmark, FiCalendar, FiUserPlus, FiUsers } from 'react-icons/fi'
+import { FiBookmark , FiUserPlus, FiUsers } from 'react-icons/fi'
 import type { IProfileProps } from '../../../interfaces/myProfile'
 import useFollow from '../../../shared/Hooks/useFollowUser';
 import { Spinner } from '@heroui/react';
@@ -6,7 +6,7 @@ import { FaPlus } from 'react-icons/fa';
 
 export default function ProfileHeader({ profile, isFollow, isMyProfile }: IProfileProps) {
 
-    const { follow, isPending, isSuccess } = useFollow(profile._id)
+    const { follow, isPending } = useFollow(profile._id)
 
     const stats = [
         { label: "Followers", value: profile.followersCount, icon: FiUsers, },
@@ -31,11 +31,6 @@ export default function ProfileHeader({ profile, isFollow, isMyProfile }: IProfi
                     <p className="mt-1 text-sm text-paragraph">
                         @{profile.username}
                     </p>
-
-                    <div className="mt-3 flex items-center gap-2 text-sm text-paragraph">
-                        <FiCalendar className="shrink-0 text-primary" />
-                        <span></span>
-                    </div>
                 </div>
             </div>
 
@@ -63,12 +58,11 @@ export default function ProfileHeader({ profile, isFollow, isMyProfile }: IProfi
                 </div>
                 {!isMyProfile && <button
                     type="button"
-                    disabled={isPending || isSuccess}
                     onClick={() => follow()}
-                    className="btn-primary hover:opacity-90 active:scale-95 flex gap-2 items-center flex items-center gap-2"
-                >
-                    {isPending ? <><Spinner color="current" size="sm" /><span>...Following</span> </>
-                        : isFollow ? "Following"
+                    className={`${isFollow ? "btn-secondary" : "btn-primary"} hover:opacity-90 active:scale-95 flex gap-2 items-center flex items-center gap-2`}                >
+                    {isPending ? <><Spinner color="current" size="sm" />
+                     {isFollow ? <span>...Unfollowing</span> : <span>...Following</span>}  </>
+                        : isFollow ? "Unfollow"
                             : <><FaPlus /><span>Follow</span></>
                     }
                 </button>}

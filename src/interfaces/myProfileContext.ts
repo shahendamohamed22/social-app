@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
-import type { IProfile } from "./myProfile";
+import type { IMyProfile } from "./myProfile";
 
 export interface IProfileContextChildren {
     children: ReactNode
 }
 
 export interface IProfileContext {
-   myProfileData : IProfile | undefined
+   myProfileData : IMyProfile | undefined
 }

@@ -6,7 +6,7 @@ import AuthContext from "./shared/context/AuthContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import MyProfileContext from "./shared/context/MyProfileContext";
 
-const queryClient = new QueryClient()
+export const queryClient = new QueryClient()
 
 function App() {
 

@@ -16,7 +16,7 @@ export default function Feeds() {
     })
 
     if (isLoading) {
-        return [1, 2, 3].map(() => <div className="mb-3 space-y-4 rounded-2xl bg-card p-4">
+        return [1, 2, 3].map((i) => <div key={i} className="mb-3 space-y-4 rounded-2xl bg-card p-4">
             <div className="flex items-center gap-3">
                 <Skeleton className="h-11 w-11 shrink-0 rounded-full" />
 
