@@ -4,7 +4,7 @@ export interface IPost {
   privacy: string
   user: IUserPost
   sharedPost: any
-  likes: any[]
+  likes: string[]
   createdAt: string
   image: string
   commentsCount: number
@@ -49,4 +49,11 @@ export interface IPostCardProps {
 export interface IPostsProps {
   id : string | undefined
   isMyProfile? : boolean | undefined
+}
+
+//***************
+
+export interface ISavedCardProps{
+    post : IPost
+  
 }

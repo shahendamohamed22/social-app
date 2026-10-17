@@ -11,12 +11,13 @@ export default function Posts({ id, isMyProfile }: IPostsProps) {
         return api.get(`users/${id}/posts`)
     }
 
-    const { data, isLoading } = useQuery({
+    const { data : posts, isLoading } = useQuery({
         queryKey: ["posts", id],
-        queryFn: getUserPosts
+        queryFn: getUserPosts,
+        select: (data)=>data?.data.data.posts
     })
 
-    const posts = data?.data.data.posts    
+      
     if (isLoading) {
         return <div className="space-y-4 rounded-2xl bg-card p-4">
             <div className="flex items-center gap-3">

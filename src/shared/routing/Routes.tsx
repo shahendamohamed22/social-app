@@ -8,6 +8,7 @@ import Register from "../../pages/Auth/Register";
 import NotFound from "../../pages/notFound/NotFound";
 import AllSuggestions from "../../pages/AllSuggestions/AllSuggestions";
 import Profile from "../../pages/Profile/Profile";
+import Saved from "../../pages/Saved/Saved";
 
 export const routes = createBrowserRouter([
     {
@@ -16,6 +17,7 @@ export const routes = createBrowserRouter([
             { path: "/suggestions", element: <AllSuggestions /> },
             { path: "/profile", element: <Profile /> },
             { path: "/profile/:userId", element: <Profile /> },
+            { path: "/saved-posts", element: <Saved /> },
             { path: "*", element: <NotFound /> },
         ]
     },

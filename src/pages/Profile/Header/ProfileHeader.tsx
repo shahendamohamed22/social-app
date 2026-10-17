@@ -1,17 +1,18 @@
-import { FiBookmark , FiUserPlus, FiUsers } from 'react-icons/fi'
+import { FiBookmark, FiUserPlus, FiUsers } from 'react-icons/fi'
 import type { IProfileProps } from '../../../interfaces/myProfile'
 import useFollow from '../../../shared/Hooks/useFollowUser';
 import { Spinner } from '@heroui/react';
 import { FaPlus } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 export default function ProfileHeader({ profile, isFollow, isMyProfile }: IProfileProps) {
 
     const { follow, isPending } = useFollow(profile._id)
 
     const stats = [
-        { label: "Followers", value: profile.followersCount, icon: FiUsers, },
-        { label: "Following", value: profile.followingCount, icon: FiUserPlus },
-        { label: "Saved Posts", value: profile.bookmarksCount, icon: FiBookmark, },
+        { label: "Followers", value: profile.followersCount, icon: FiUsers, to: "/", display: true },
+        { label: "Following", value: profile.followingCount, icon: FiUserPlus, to: "/", display: true },
+        { label: "Saved Posts", value: profile.bookmarksCount, icon: FiBookmark, to: "/saved-posts", display: true },
     ];
 
     return (
@@ -39,8 +40,8 @@ export default function ProfileHeader({ profile, isFollow, isMyProfile }: IProfi
             {/* Statistics */}
             <div className='flex justify-between items-center'>
                 <div className=' flex gap-3'>
-                    {stats.map(({ label, value, icon: Icon }) => (
-                        <div key={label}
+                    {stats.filter(({label}) => label !== "Saved Posts" || isMyProfile).map(({ label, value, icon: Icon, to }) => (
+                        <Link to={to} key={label}
                             className="rounded-xl bg-background p-3 flex items-center gap-2 transition hover:bg-primary/5 sm:p-4"
                         >
 
@@ -52,7 +53,7 @@ export default function ProfileHeader({ profile, isFollow, isMyProfile }: IProfi
                                 {label}
                             </p>
                             <Icon className=" text-primary" size={20} />
-                        </div>
+                        </Link>
                     ))}
 
                 </div>
@@ -61,7 +62,7 @@ export default function ProfileHeader({ profile, isFollow, isMyProfile }: IProfi
                     onClick={() => follow()}
                     className={`${isFollow ? "btn-secondary" : "btn-primary"} hover:opacity-90 active:scale-95 flex gap-2 items-center flex items-center gap-2`}                >
                     {isPending ? <><Spinner color="current" size="sm" />
-                     {isFollow ? <span>...Unfollowing</span> : <span>...Following</span>}  </>
+                        {isFollow ? <span>...Unfollowing</span> : <span>...Following</span>}  </>
                         : isFollow ? "Unfollow"
                             : <><FaPlus /><span>Follow</span></>
                     }

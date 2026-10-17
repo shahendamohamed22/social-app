@@ -10,9 +10,10 @@ export default function Feeds() {
         return api.get("posts?limit=20")
     }
 
-    const { isLoading, data } = useQuery({
+    const { isLoading, data : feeds } = useQuery({
         queryKey: ["feeds"],
-        queryFn: getPosts
+        queryFn: getPosts,
+        select : (data)=>data?.data.data.posts
     })
 
     if (isLoading) {
@@ -37,7 +38,7 @@ export default function Feeds() {
 
     return (
         <>
-            {data?.data.data.posts.map((post: IPost) => <PostCard key={post._id} post={post} />)}
+            {feeds.map((post: IPost) => <PostCard key={post._id} post={post} />)}
         </>
     )
 }

@@ -16,7 +16,7 @@ import { profileContext } from "../../../shared/context/MyProfileContext";
 
 const links = [
   { title: "My Posts", to: "/profile?tab=posts", icon: FiFileText },
-  { title: "Saved Posts", to: "/saved", icon: FiBookmark },
+  { title: "Saved Posts", to: "/saved-posts", icon: FiBookmark },
   { title: "Discover People", to: "/suggestions", icon: FiUsers },
   { title: "Settings", to: "/settings", icon: FiSettings },
 ];

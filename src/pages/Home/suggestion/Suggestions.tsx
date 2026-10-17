@@ -12,9 +12,10 @@ export default function Suggestions() {
     return api.get("users/suggestions?limit=10")
   }
 
-  const { isLoading, data } = useQuery({
+  const { isLoading, data : suggestions} = useQuery({
     queryKey: ["suggestions"],
-    queryFn: getSuggestions
+    queryFn: getSuggestions,
+    select : (data) => data?.data.data.suggestions
   })
 
   if (isLoading) {
@@ -29,7 +30,7 @@ export default function Suggestions() {
 
   return (
     <>
-      {data?.data.data.suggestions.slice(0, 4).map((suggestion: ISuggestion) =>
+      {suggestions.slice(0, 4).map((suggestion: ISuggestion) =>
         <SuggestionCard key={suggestion._id} suggestion={suggestion} />)}
 
       <Link to={"/suggestions"} className="btn-secondary rounded-full flex gap-2 items-center mt-3 group w-fit">

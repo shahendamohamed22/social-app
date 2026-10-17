@@ -28,7 +28,7 @@ export default function PostCard({ post }: IPostCardProps) {
     });
 
     const { like } = useLike(post._id);
-    const { bookmark } = useBookmark(post._id);
+    const { bookmark } = useBookmark();
 
     const { myProfileData } = useContext(profileContext);
     const [isLiked, setIsLiked] = useState(false);
@@ -184,7 +184,7 @@ export default function PostCard({ post }: IPostCardProps) {
                         <button
                             type="button"
                             aria-label="Bookmark post"
-                            onClick={() => bookmark()}
+                            onClick={() => bookmark(post._id)}
                             className={`flex shrink-0 items-center justify-center rounded-xl bg-transparent p-3 ${post.bookmarked ? "text-primary" : "text-paragraph"}  transition hover:bg-primary/10 hover:text-primary`}
                         >
                             {post.bookmarked ? <FaBookmark size={16} /> : <FaRegBookmark size={16} />}

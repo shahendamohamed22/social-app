@@ -10,19 +10,18 @@ export default function AllSuggestions() {
     return api.get("users/suggestions?limit=30")
   }
 
-  const { data, isLoading } = useQuery({
+  const { data : suggestions, isLoading } = useQuery({
     queryKey: ["suggestions"],
-    queryFn: getSuggestions
+    queryFn: getSuggestions,
+    select : (data) => data.data.data.suggestions
   })
-  console.log(data?.data.data.suggestions);
-
 
   return (
     <>
-      <section>
+      <section className="mx-auto max-w-7xl space-y-4 px-4 py-6">
         <header>
-          <h2 className="text-heading text-3xl font-bold">Discover People</h2>
-          <p className="text-paragraph text-1xl font-medium mt-1">Find people to connect with and grow your Loop community.</p>
+          <h2 className="text-heading text-2xl font-bold">Discover People</h2>
+          <p className="text-paragraph text-sm font-medium mt-1">Find people to connect with and grow your Loop community.</p>
         </header>
         <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 
@@ -33,7 +32,7 @@ export default function AllSuggestions() {
               <Skeleton className={`h-3 w-4/5  mx-auto`} />
               <Skeleton className={`h-3 w-2/5  mx-auto`} />
             </div>
-          </div>))) : (data?.data.data.suggestions.map((suggestion: ISuggestion) =>
+          </div>))) : (suggestions.map((suggestion: ISuggestion) =>
             <AllSuggestionsCard key={suggestion._id} suggestion={suggestion} />
           ))}
 

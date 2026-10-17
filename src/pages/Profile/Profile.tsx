@@ -4,7 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import { profileContext } from "../../shared/context/MyProfileContext";
 import api from "../../shared/api/axiosRequest";
 import { useParams } from "react-router-dom";
-import type { IUserProfile } from "../../interfaces/userProfile";
 import Posts from "./Posts/Posts";
 import { Skeleton } from "@heroui/react";
 import About from "./About/About";
@@ -18,12 +17,14 @@ export default function Profile() {
 
   const isMyProfile = !userId
 
-  const { data: userData } = useQuery<IUserProfile>({
+  function getUserProfile() {
+    return api.get(`users/${userId}/profile`)
+  }
+
+  const { data: userData } = useQuery({
     queryKey: ["userProfile", userId],
-    queryFn: async () => {
-      const { data } = await api.get(`users/${userId}/profile`)
-      return data.data
-    }
+    queryFn: getUserProfile,
+    select: (data) => data.data.data
   });
 
   const profile = isMyProfile ? myProfileData : userData?.user
