@@ -8,17 +8,17 @@ export default function useCreatePost() {
 
     const {myProfileData} = useContext(profileContext)
 
-    function creatPost(formdata: FormData) {
+    function addPost(formdata: FormData) {
         return api.post("posts", formdata)
     }
 
-    const { mutate: createPost, isPending } = useMutation({
-        mutationFn: creatPost,
+    const { mutate: createPost, isPending : creatPending } = useMutation({
+        mutationFn: addPost,
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["feeds"] });
             queryClient.invalidateQueries({ queryKey: ["posts"] });
             queryClient.invalidateQueries({ queryKey: ["posts", myProfileData?._id] });
         }
     })
-    return { createPost, isPending }
+    return { createPost, creatPending }
 }

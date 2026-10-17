@@ -1,35 +1,57 @@
-import { useContext, useState } from "react";
-import {
-    FiImage,
-    FiGlobe,
-} from "react-icons/fi";
+import { useContext, useId, useState } from "react";
+import { FiImage, FiGlobe } from "react-icons/fi";
 import { profileContext } from "../../shared/context/MyProfileContext";
 import useCreatePost from "../../shared/Hooks/useCreatePosts";
+import usePostActions from "../../shared/Hooks/usePostActions";
 import { toast } from "@heroui/react";
+import type { ICratePostProps } from "../../interfaces/postActions";
 
-export default function CreatePost() {
+export default function CreatePost({ isEdit, setIsEdit, body, image, postId }: ICratePostProps) {
     const { myProfileData } = useContext(profileContext);
 
     const [postPhoto, setPostPhoto] = useState<File | null>(null)
-    const [postText, setPostText] = useState("")
+    const [postText, setPostText] = useState<string>(body || "")
+    const [postImagePreview, setPostImagePreview] = useState<string>(image || "")
 
-    const { createPost, isPending } = useCreatePost()
+    const { createPost, creatPending } = useCreatePost()
+    const { updatePost, updatePending } = usePostActions()
+
+    const photoInputId = useId()
 
     function handleCreatePost() {
 
-        let formdata = new FormData()
-        formdata.append("body", postText);
+        if (!postText.trim() && !body &&!postPhoto && !image) {
+            toast.danger("Please add text or an image");
+            return;
+        }
+        const formdata = new FormData();
+
+        if (postText.trim()) {
+            formdata.append("body", postText);
+        }
+
         if (postPhoto) {
             formdata.append("image", postPhoto);
         }
 
-        createPost(formdata, {
-            onSuccess: () => {
-                setPostPhoto(null)
-                setPostText("")
-                toast.success("post is created")
-            }
-        });
+        if (isEdit) {
+            updatePost({ postId, formdata }, {
+                onSuccess: () => {
+                    setPostPhoto(null)
+                    setPostText("")
+                    setIsEdit(false)
+                    toast.success("Post is updated")
+                }
+            });
+        } else {
+            createPost(formdata, {
+                onSuccess: () => {
+                    setPostPhoto(null)
+                    setPostText("")
+                    toast.success("Post is created")
+                }
+            });
+        }
     }
 
     return (
@@ -65,19 +87,23 @@ export default function CreatePost() {
             </div>
 
             {/* Image Preview Placeholder */}
-            {postPhoto && <div className="mt-3 w-fit cursor-pointer gap-3 rounded-xl border border-dashed border-primary/20 bg-background p-3 transition hover:border-primary/50 hover:bg-primary/5">
-                <div className="flex h-25 w-25 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                    <img src={URL.createObjectURL(postPhoto)} alt={postPhoto.name} />
-                    <FiImage size={40} />
-                </div>
-            </div>}
+            {(postPhoto || image) &&
+                <label htmlFor={photoInputId} className="mt-4 flex h-25 w-25 overflow-hidden items-center justify-center rounded-xl bg-primary/10 text-primary cursor-pointer">
+                    <img src={postPhoto ? postImagePreview : image} alt="post photo" className="object-contain w-full h-full" />
+                </label>
+            }
 
             <div className="mt-4 flex items-center justify-between gap-3 border-t border-primary/10 pt-4">
 
                 <input type="file" className="hidden"
-                    id="create-post"
-                    onChange={(e) => setPostPhoto(e.target.files?.[0] ?? null)} />
-                <label htmlFor="create-post" className="flex w-auto items-center gap-2 rounded-xl bg-transparent px-3 py-2.5 text-sm font-medium text-paragraph shadow-none transition hover:bg-primary/10 hover:text-primary">
+                    id={photoInputId}
+                    onChange={(e) => {
+                        if (e.target.files?.[0]) {
+                            setPostPhoto(e.target.files?.[0])
+                            setPostImagePreview(URL.createObjectURL(e.target.files?.[0]))
+                        }
+                    }} />
+                <label htmlFor={photoInputId} className="flex w-auto items-center gap-2 rounded-xl bg-transparent px-3 py-2.5 text-sm font-medium text-paragraph shadow-none transition hover:bg-primary/10 hover:text-primary cursor-pointer">
                     <FiImage size={19} />
                     <span>Photo</span>
                 </label>
@@ -87,7 +113,9 @@ export default function CreatePost() {
                     onClick={handleCreatePost}
                     className="w-auto rounded-xl bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-none transition hover:opacity-90 active:scale-95"
                 >
-                    {isPending ? "posting" : "Post"}
+                    <>
+                        {isEdit ? (updatePending ? "Update.." : "Update") : (creatPending ? "posting.." : "Post")}
+                    </>
                 </button>
             </div>
         </section>
