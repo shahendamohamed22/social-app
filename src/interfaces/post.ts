@@ -1,11 +1,12 @@
 import type { IComment } from "./comment"
+import type { IUser } from "./userProfile"
 
 export interface IPost {
   _id: string
   body: string
   privacy: string
   user: IUserPost
-  sharedPost: any
+  sharedPost: IUser[]
   likes: string[]
   createdAt: string
   image: string
@@ -30,8 +31,8 @@ export interface ITopComment {
   content: string
   commentCreator: ICommentCreator
   post: string
-  parentComment: any
-  likes: any[]
+  parentComment: string
+  likes: string[]
   createdAt: string
 }
 
@@ -44,6 +45,8 @@ export interface ICommentCreator {
 
 export interface IPostCardProps {
   post : IPost
+  isMyProfile?: boolean
+  SetIsEdit?: React.Dispatch<React.SetStateAction<boolean>> 
 }
 
 //*************** 

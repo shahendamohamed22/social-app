@@ -5,13 +5,14 @@ import useCreatePost from "../../shared/Hooks/useCreatePosts";
 import usePostActions from "../../shared/Hooks/usePostActions";
 import { toast } from "@heroui/react";
 import type { ICratePostProps } from "../../interfaces/postActions";
+import { IoIosCloseCircle } from "react-icons/io";
 
-export default function CreatePost({ isEdit, setIsEdit, body, image, postId }: ICratePostProps) {
+export default function CreatePost({ isEdit, setIsEdit, post }: ICratePostProps) {
     const { myProfileData } = useContext(profileContext);
 
     const [postPhoto, setPostPhoto] = useState<File | null>(null)
-    const [postText, setPostText] = useState<string>(body || "")
-    const [postImagePreview, setPostImagePreview] = useState<string>(image || "")
+    const [postText, setPostText] = useState<string>(post?.body || "")
+    const [postImagePreview, setPostImagePreview] = useState<string>(post?.image || "")
 
     const { createPost, creatPending } = useCreatePost()
     const { updatePost, updatePending } = usePostActions()
@@ -20,7 +21,7 @@ export default function CreatePost({ isEdit, setIsEdit, body, image, postId }: I
 
     function handleCreatePost() {
 
-        if (!postText.trim() && !body &&!postPhoto && !image) {
+        if (!postText.trim() && !post.body && !postPhoto && !post.image) {
             toast.danger("Please add text or an image");
             return;
         }
@@ -35,11 +36,11 @@ export default function CreatePost({ isEdit, setIsEdit, body, image, postId }: I
         }
 
         if (isEdit) {
-            updatePost({ postId, formdata }, {
+            updatePost({ postId: post._id, formdata }, {
                 onSuccess: () => {
                     setPostPhoto(null)
                     setPostText("")
-                    setIsEdit(false)
+                    setIsEdit?.(false)
                     toast.success("Post is updated")
                 }
             });
@@ -53,6 +54,12 @@ export default function CreatePost({ isEdit, setIsEdit, body, image, postId }: I
             });
         }
     }
+
+    function removePhoto() {
+        setPostPhoto(null)
+        setPostImagePreview("")
+    }
+
 
     return (
         <section className="rounded-2xl border border-primary/10 bg-card p-4 shadow-sm sm:p-5">
@@ -87,9 +94,16 @@ export default function CreatePost({ isEdit, setIsEdit, body, image, postId }: I
             </div>
 
             {/* Image Preview Placeholder */}
-            {(postPhoto || image) &&
-                <label htmlFor={photoInputId} className="mt-4 flex h-25 w-25 overflow-hidden items-center justify-center rounded-xl bg-primary/10 text-primary cursor-pointer">
-                    <img src={postPhoto ? postImagePreview : image} alt="post photo" className="object-contain w-full h-full" />
+            {(postPhoto || post?.image) &&
+                <label htmlFor={photoInputId} className="relative mt-4 flex h-25 w-25 items-center justify-center rounded-xl bg-primary/10 text-primary cursor-pointer">
+                    <img src={postPhoto ? postImagePreview : post.image} alt="post photo" className="object-contain rounded-xl w-full h-full" />
+                    <button
+                        type="button"
+                        onClick={removePhoto}
+                        className="absolute -right-2 -top-2 rounded-full bg-card text-primary"
+                    >
+                        <IoIosCloseCircle size={24} />
+                    </button>
                 </label>
             }
 

@@ -2,7 +2,6 @@
 import { useContext } from "react";
 import {
   FiHome,
-  FiCompass,
   FiMessageCircle,
   FiBell,
   FiUser,

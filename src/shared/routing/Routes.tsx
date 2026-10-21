@@ -10,16 +10,19 @@ import AllSuggestions from "../../pages/AllSuggestions/AllSuggestions";
 import Profile from "../../pages/Profile/Profile";
 import Saved from "../../pages/Saved/Saved";
 import PostDetails from "../../pages/PostDetails/PostDetails";
+import FollwersAndFollowing from "../../pages/FollowersAndFollowing/FollwersAndFollowing";
+import ProtectedRoute from "../Guards/ProtectedRoute";
 
 export const routes = createBrowserRouter([
     {
         path: "/", element: <Layout />, children: [
-            { path: "/", element: <Home /> },
-            { path: "/suggestions", element: <AllSuggestions /> },
-            { path: "/profile", element: <Profile /> },
-            { path: "/profile/:userId", element: <Profile /> },
-            { path: "/posts/:postId", element: <PostDetails /> },
-            { path: "/saved-posts", element: <Saved /> },
+            { path: "/", element: <ProtectedRoute><Home /> </ProtectedRoute> },
+            { path: "/suggestions", element: <ProtectedRoute><AllSuggestions /></ProtectedRoute> },
+            { path: "/profile", element: <ProtectedRoute><Profile /></ProtectedRoute> },
+            { path: "/profile/:userId", element: <ProtectedRoute><Profile /> </ProtectedRoute> },
+            { path: "/profile/:userId/:type", element: <ProtectedRoute><FollwersAndFollowing /></ProtectedRoute> },
+            { path: "/posts/:postId", element: <ProtectedRoute><PostDetails /> </ProtectedRoute> },
+            { path: "/saved-posts", element: <ProtectedRoute><Saved /> </ProtectedRoute> },
             { path: "*", element: <NotFound /> },
         ]
     },

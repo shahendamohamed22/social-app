@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import api from "../api/axiosRequest";
 import { queryClient } from "../../App";
 
@@ -13,8 +13,18 @@ export default function useLike(postId: string) {
             queryClient.invalidateQueries({ queryKey: ["feeds"] });
             queryClient.invalidateQueries({ queryKey: ["posts"] });
         }
-
     })
-    return { like, likeIsPending, likeIsSuccess }
+
+
+    function getPostsLikes() {
+        return api.get(`/posts/${postId}/likes`)
+    }
+
+    const { data: postLikes, isLoading: postLikesLoading } = useQuery({
+        queryKey: ['likes', postId],
+        queryFn: getPostsLikes,
+        select: (data) => data.data.data.likes
+    })
+    return { like, likeIsPending, likeIsSuccess, postLikes, postLikesLoading }
 
 }

@@ -7,7 +7,6 @@ export default function SavedCard({ post }: IPostProps) {
 
     const { bookmark , bookmarkIsPending } = useBookmark()
     
-
     return (
         <article className="overflow-hidden rounded-xl bg-white shadow-sm transition hover:shadow-md">
             {/* Post Content */}

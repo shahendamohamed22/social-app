@@ -16,23 +16,13 @@ export default function PostDetails() {
     select: (data) => data.data.data.post
   })
 
-  function getcomments() {
-    return api.get(`posts/${postId}/comments`)
-  }
-  const { data: comments } = useQuery({
-    queryKey: ['comments', postId],
-    queryFn: getcomments,
-    select: (data) => data.data.data.comments
-  })
-
-
   if (isLoading) {
     return <h1>Loading</h1>
   }
 
   return (
     <>
-      <PostDetilsCard post={post} comments={comments} />
+      <PostDetilsCard post={post} />
     </>
   )
 }

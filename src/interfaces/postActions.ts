@@ -1,9 +1,9 @@
+import type { IPost } from "./post"
+
 export interface ICratePostProps {
-    isEdit: boolean
-    setIsEdit: React.Dispatch<React.SetStateAction<boolean>>
-    body : string 
-    image : string
-    postId : string 
+    isEdit?: boolean
+    setIsEdit?: React.Dispatch<React.SetStateAction<boolean>>
+    post : IPost
 }
 
 export interface IUpdatePost {

@@ -12,7 +12,7 @@ export interface IUser {
   gender: string
   photo: string
   cover: string
-  followers: any[]
+  followers: IFollowing[]
   following: IFollowing
   createdAt: string
   followersCount: number

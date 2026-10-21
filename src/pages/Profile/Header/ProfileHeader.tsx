@@ -10,9 +10,9 @@ export default function ProfileHeader({ profile, isFollow, isMyProfile }: IProfi
     const { follow, isPending } = useFollow(profile._id)
 
     const stats = [
-        { label: "Followers", value: profile.followersCount, icon: FiUsers, to: "/", display: true },
-        { label: "Following", value: profile.followingCount, icon: FiUserPlus, to: "/", display: true },
-        { label: "Saved Posts", value: profile.bookmarksCount, icon: FiBookmark, to: "/saved-posts", display: true },
+        { label: "Followers", value: profile.followersCount, icon: FiUsers, to: `/profile/${profile._id}/followers`, },
+        { label: "Following", value: profile.followingCount, icon: FiUserPlus, to: `/profile/${profile._id}/following`, },
+        { label: "Saved Posts", value: profile.bookmarksCount, icon: FiBookmark, to: "/saved-posts", },
     ];
 
     return (
