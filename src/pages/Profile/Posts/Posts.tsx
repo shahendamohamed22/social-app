@@ -1,24 +1,14 @@
-import { useQuery } from "@tanstack/react-query"
 import type { IPost, IPostsProps } from "../../../interfaces/post"
-import api from "../../../shared/api/axiosRequest"
 import PostCard from "../../../components/cards/posts/PostCard"
 import CreatePost from "../../../components/createPost/CreatePost"
 import { Skeleton } from "@heroui/react"
+import useGetPosts from "../../../shared/Hooks/useGetPosts"
 
 export default function Posts({ id, isMyProfile }: IPostsProps) {
 
-    function getUserPosts() {
-        return api.get(`users/${id}/posts`)
-    }
+    const { posts, postIsLoading } = useGetPosts("", id);
 
-    const { data : posts, isLoading } = useQuery({
-        queryKey: ["posts", id],
-        queryFn: getUserPosts,
-        select: (data)=>data?.data.data.posts
-    })
-
-      
-    if (isLoading) {
+    if (postIsLoading) {
         return <div className="space-y-4 rounded-2xl bg-card p-4">
             <div className="flex items-center gap-3">
                 <Skeleton className="h-11 w-11 shrink-0 rounded-full" />
@@ -41,8 +31,8 @@ export default function Posts({ id, isMyProfile }: IPostsProps) {
     return (
         <>
             {isMyProfile && <CreatePost />}
-    
-            {!isLoading && posts.length ? (posts.map((post: IPost) => <PostCard key={post._id} post={post} />))
+
+            {!postIsLoading && posts.length ? (posts.map((post: IPost) => <PostCard key={post._id} post={post} />))
                 : <p className="text-paragraph text-center mt-6 font-medium">"There is no posts yet .."</p>}
 
         </>

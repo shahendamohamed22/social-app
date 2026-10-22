@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 export default function SuggestionCard({ suggestion }: ISuggestionCardProps) {
 
   const { follow, isPending, isSuccess } = useFollow(suggestion._id)
+  
   return (<>
     <div className="mt-3 flex items-center justify-between gap-3 rounded-2xl border border-primary/10 bg-card p-3 transition duration-300 hover:border-primary/25 hover:shadow-sm">
       {/* User Info */}

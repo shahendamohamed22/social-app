@@ -1,20 +1,11 @@
-import { useQuery } from "@tanstack/react-query"
-import api from "../../shared/api/axiosRequest"
 import AllSuggestionsCard from "../../components/cards/suggestion/AllSuggestionsCard";
 import type { ISuggestion } from "../../interfaces/suggestion";
 import { Skeleton } from "@heroui/react";
+import useGetSuggestions from "../../shared/Hooks/useGetSuggestions";
 
 export default function AllSuggestions() {
 
-  function getSuggestions() {
-    return api.get("users/suggestions?limit=30")
-  }
-
-  const { data : suggestions, isLoading } = useQuery({
-    queryKey: ["suggestions"],
-    queryFn: getSuggestions,
-    select : (data) => data.data.data.suggestions
-  })
+  const { suggestions, isLoading } = useGetSuggestions()
 
   return (
     <>

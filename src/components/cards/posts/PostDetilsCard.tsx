@@ -1,4 +1,3 @@
-
 import { FaRegHeart } from "react-icons/fa";
 import { RiSendPlaneFill } from "react-icons/ri";
 import { useEffect, useState } from "react";

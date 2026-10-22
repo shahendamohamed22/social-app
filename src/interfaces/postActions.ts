@@ -3,7 +3,7 @@ import type { IPost } from "./post"
 export interface ICratePostProps {
     isEdit?: boolean
     setIsEdit?: React.Dispatch<React.SetStateAction<boolean>>
-    post : IPost
+    post? : IPost
 }
 
 export interface IUpdatePost {

@@ -1,4 +1,3 @@
-
 import type { IPostCardProps } from "../../../interfaces/post";
 import {
     FaRegHeart,

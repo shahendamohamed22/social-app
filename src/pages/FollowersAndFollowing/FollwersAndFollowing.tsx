@@ -1,19 +1,11 @@
-import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import api from '../../shared/api/axiosRequest';
 import type { IFollowing } from '../../interfaces/userProfile';
+import useGetFollowers from '../../shared/Hooks/useGetFollowers';
 
 export default function FollwersAndFollowing() {
     const { type, userId } = useParams()
-    console.log(type);
 
-    const { data, isLoading } = useQuery({
-        queryKey: ["useData", userId],
-        queryFn: () => {
-            return api.get(`users/${userId}/profile`)
-        },
-        select: (data) => data?.data?.data.user
-    })
+    const {data , isLoading} = useGetFollowers(userId)
    
     const followData = type === "followers" ? data?.followers : data?.following
 

@@ -1,4 +1,3 @@
-
 import { NavLink, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import {
@@ -23,8 +22,8 @@ const links = [
 
 export default function Sidebar() {
 
-  const {logout} = useContext(authContext);
-  const {myProfileData } = useContext(profileContext)
+  const { logout } = useContext(authContext);
+  const { myProfileData } = useContext(profileContext)
   const navigate = useNavigate();
 
   function handleLogout() {
@@ -38,10 +37,9 @@ export default function Sidebar() {
       <NavLink
         to="/profile"
         className={({ isActive }) =>
-          `group flex items-center gap-3 rounded-xl p-3 transition-colors ${
-            isActive
-              ? "bg-primary/10 text-primary"
-              : "text-heading hover:bg-primary/5"
+          `group flex items-center gap-3 rounded-xl p-3 transition-colors ${isActive
+            ? "bg-primary/10 text-primary"
+            : "text-heading hover:bg-primary/5"
           }`
         }
       >
@@ -79,10 +77,9 @@ export default function Sidebar() {
             key={title}
             to={to}
             className={({ isActive }) =>
-              `group flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition-colors ${
-                isActive
-                  ? "bg-primary/10 text-primary"
-                  : "text-paragraph hover:bg-primary/5 hover:text-primary"
+              `group flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition-colors ${isActive
+                ? "bg-primary/10 text-primary"
+                : "text-paragraph hover:bg-primary/5 hover:text-primary"
               }`
             }
           >
@@ -102,7 +99,7 @@ export default function Sidebar() {
       <button
         type="button"
         onClick={handleLogout}
-        className="pr-9 justify-end flex w-full items-center gap-3 rounded-xl bg-transparent px-3 py-3 text-sm font-medium text-red-500 shadow-none transition-colors hover:!bg-red-500/10"
+        className="pr-9 justify-end flex w-full items-center gap-3 rounded-xl bg-transparent px-3 py-3 text-sm font-medium text-red-500 shadow-none transition-colors hover:bg-red-500/10"
       >
         <span>Log out</span>
         <FiLogOut size={20} />

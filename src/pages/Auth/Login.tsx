@@ -30,8 +30,7 @@ export default function Login() {
       setIsLoading(true);
 
       const { data } = await axios.post(`${base_Url}users/signin`, formData)
-      console.log(data);
-
+      
       toast.success(data.message);
       login(data.data.token)
 

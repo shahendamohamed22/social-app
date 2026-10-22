@@ -60,7 +60,7 @@ export default function ProfileHeader({ profile, isFollow, isMyProfile }: IProfi
                 {!isMyProfile && <button
                     type="button"
                     onClick={() => follow()}
-                    className={`${isFollow ? "btn-secondary" : "btn-primary"} hover:opacity-90 active:scale-95 flex gap-2 items-center flex items-center gap-2`}                >
+                    className={`${isFollow ? "btn-secondary" : "btn-primary"} hover:opacity-90 active:scale-95 flex gap-2 items-center`}                >
                     {isPending ? <><Spinner color="current" size="sm" />
                         {isFollow ? <span>...Unfollowing</span> : <span>...Following</span>}  </>
                         : isFollow ? "Unfollow"

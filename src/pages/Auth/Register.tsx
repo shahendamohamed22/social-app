@@ -22,8 +22,7 @@ export default function Register() {
   });
 
   async function submitForm(formData: IRegister) {
-    console.log(formData);
-
+  
     if (isLoading) return;
 
     try {

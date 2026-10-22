@@ -5,6 +5,7 @@ import { Spinner } from "@heroui/react";
 import { FaPlus } from "react-icons/fa";
 
 export default function AllSuggestionsCard({ suggestion }: ISuggestionCardProps) {
+    
     const { follow, isPending, isSuccess } = useFollow(suggestion._id)
 
     return (

@@ -1,22 +1,13 @@
-import { useQuery } from "@tanstack/react-query";
 import SuggestionCard from "../../../components/cards/suggestion/SuggestionCard";
 import type { ISuggestion } from "../../../interfaces/suggestion";
 import { IoMdArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { Skeleton } from "@heroui/react";
-import api from "../../../shared/api/axiosRequest";
+import useGetSuggestions from "../../../shared/Hooks/useGetSuggestions";
 
 export default function Suggestions() {
 
-  function getSuggestions() {
-    return api.get("users/suggestions?limit=10")
-  }
-
-  const { isLoading, data : suggestions} = useQuery({
-    queryKey: ["suggestions"],
-    queryFn: getSuggestions,
-    select : (data) => data?.data.data.suggestions
-  })
+  const {isLoading , suggestions} = useGetSuggestions()
 
   if (isLoading) {
     return [0, 1, 2, 3].map((i) => <div key={i} className="flex items-center gap-4 mt-4 p-3 bg-card rounded-2xl">
