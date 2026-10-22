@@ -5,25 +5,33 @@ import { Toast } from "@heroui/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AuthContextProvider from "./shared/context/AuthContextProvider";
 import MyProfileContextProvider from "./shared/context/MyProfileContextProvider";
+import NotificationContextProvider from "./shared/context/NotificationContextProvider";
 
-export const queryClient = new QueryClient()
+export const queryClient = new QueryClient({
+  defaultOptions:{
+    queries:{
+      staleTime : 60000 * 3 ,
+      gcTime : 10000 , 
+      retry : 1 
+    }
+  }
+})
 
 function App() {
 
   return (
-
     <>
       <QueryClientProvider client={queryClient}>
+        <NotificationContextProvider>
+          <AuthContextProvider>
+            <MyProfileContextProvider>
 
-        <AuthContextProvider>
-          <MyProfileContextProvider>
+              <Toast.Provider placement="top" gap={12} className="mt-6"></Toast.Provider>
+              <RouterProvider router={routes} ></RouterProvider>
 
-            <Toast.Provider placement="top" gap={12} className="mt-6"></Toast.Provider>
-            <RouterProvider router={routes} ></RouterProvider>
-
-          </MyProfileContextProvider>
-
-        </AuthContextProvider>
+            </MyProfileContextProvider>
+          </AuthContextProvider>
+        </NotificationContextProvider>
       </QueryClientProvider>
 
 

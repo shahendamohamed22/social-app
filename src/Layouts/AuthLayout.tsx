@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 
 export default function AuthLayout() {
     const [form, setForm] = useState("/auth/login")
-
     const { pathname } = useLocation();
 
     useEffect(() => {
@@ -44,7 +43,6 @@ export default function AuthLayout() {
 
                 </div>
             </section>
-
         </div>
 
 

@@ -76,6 +76,13 @@ export default function CommentItem({ comment, postId }: { comment: IComment, po
                         >
                             {repliesLoading ? <Spinner color='current' /> : "Reply"}
                         </button>
+                        <button
+                            type="button"
+                            onClick={() => setIsReplyOpen(!isReplyOpen)}
+                            className="ml-3 mt-2 text-xs font-semibold text-paragraph transition hover:text-primary"
+                        >
+                            {repliesLoading ? <Spinner color='current' /> : `${comment.repliesCount}? replies `}
+                        </button>
 
                         {/* Replies */}
                         {repliesLoading ? "" :
