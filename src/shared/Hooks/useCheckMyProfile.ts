@@ -8,11 +8,12 @@ export default function useCheckMyProfile() {
     const [isMyProfile, setIsMyProfile] = useState<boolean>();
 
 
-    function checkProfile(id: string) {
+    function checkProfile(id: string | undefined) {
         if (id === myProfileData?._id) {
             setIsMyProfile(true)
         } else setIsMyProfile(false);
     }
+    
 
     return { isMyProfile, checkProfile , setIsMyProfile }
 }

@@ -35,7 +35,7 @@ export default function CreatePost({ isEdit, setIsEdit, post }: ICratePostProps)
             formdata.append("image", postPhoto);
         }
 
-        if (isEdit) {
+        if (isEdit && post) {
             updatePost({ postId: post._id, formdata }, {
                 onSuccess: () => {
                     setPostPhoto(null)

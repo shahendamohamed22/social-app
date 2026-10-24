@@ -14,7 +14,7 @@ export default function Profile() {
 
   const { myProfileData } = useContext(profileContext);
 
-  const isMyProfile = !userId
+  const isMyProfile = !userId || userId === myProfileData?._id
 
   const {userData} = useUserProfile(userId)
 

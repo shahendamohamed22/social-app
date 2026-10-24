@@ -1,5 +1,6 @@
 import { useState, type ReactNode } from "react"
 import { authContext } from "./AuthContext"
+import { queryClient } from "../../App";
 
 export default function AuthContextProvider({ children }: { children: ReactNode }) {
 
@@ -14,6 +15,7 @@ export default function AuthContextProvider({ children }: { children: ReactNode 
   function logout() {
     setToken(null)
     localStorage.removeItem("token")
+    queryClient.clear()
   }
 
   return (<>

@@ -6,6 +6,7 @@ import { profileContext } from '../../../shared/context/MyProfileContext';
 import CommentActions from '../CommentActions/CommentActions';
 import type { IComment, IReply } from '../../../interfaces/comment';
 import useGetReplies from '../../../shared/Hooks/useGetReplies';
+import useLike from '../../../shared/Hooks/useLike';
 
 export default function CommentItem({ comment, postId }: { comment: IComment, postId: string }) {
     const { myProfileData } = useContext(profileContext);
@@ -16,22 +17,23 @@ export default function CommentItem({ comment, postId }: { comment: IComment, po
 
     const { replies, repliesLoading } = useGetReplies(postId, comment._id, isReplyOpen)
 
+    const { likeComment, likeCommentIsSuccess, } = useLike(postId)
+
     function handleSend(commentId: string) {
         const formdata = new FormData();
-        console.log(reply);
 
         if (reply.trim()) {
             formdata.append("content", reply);
         }
 
         createReply({ postId, formdata, commentId }, {
-            onSuccess: (response) => {
+            onSuccess: () => {
                 toast.success("reply is created")
-                console.log(response);
                 setReply("")
             }
         });
     }
+
     return (
         <>
             <div
@@ -68,21 +70,24 @@ export default function CommentItem({ comment, postId }: { comment: IComment, po
 
                             <CommentActions comment={comment} />
                         </div>
+                        <div className='flex '>
+                            <button
+                                type="button"
+                                onClick={() => setIsReplyOpen(!isReplyOpen)}
+                                className="ml-3 mt-2 text-xs font-semibold text-paragraph transition hover:text-primary"
+                            >
+                                {repliesLoading ? <Spinner color='current' />
+                                    : comment.repliesCount === 0 ?
+                                        "Reply" : comment.repliesCount > 1 ?
+                                            `${comment.repliesCount} replies` : "1 reply"}
+                            </button>
+                            <button className={`ml-3 mt-2 text-xs font-semibold ${likeCommentIsSuccess ? "text-primary" : "text-paragraph"}  transition hover:text-primary`}
+                                onClick={() => {likeComment(comment._id); console.log(comment);
+                                }}>
+                                {likeCommentIsSuccess ? "Liked" : "Like"} 
+                            </button>
+                        </div>
 
-                        <button
-                            type="button"
-                            onClick={() => setIsReplyOpen(!isReplyOpen)}
-                            className="ml-3 mt-2 text-xs font-semibold text-paragraph transition hover:text-primary"
-                        >
-                            {repliesLoading ? <Spinner color='current' /> : "Reply"}
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => setIsReplyOpen(!isReplyOpen)}
-                            className="ml-3 mt-2 text-xs font-semibold text-paragraph transition hover:text-primary"
-                        >
-                            {repliesLoading ? <Spinner color='current' /> : `${comment.repliesCount}? replies `}
-                        </button>
 
                         {/* Replies */}
                         {repliesLoading ? "" :

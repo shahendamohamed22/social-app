@@ -1,12 +1,11 @@
 import type { IComment } from "./comment"
-import type { IUser } from "./userProfile"
 
 export interface IPost {
   _id: string
   body: string
   privacy: string
   user: IUserPost
-  sharedPost: IUser[]
+  sharedPost: ISharedPost
   likes: string[]
   createdAt: string
   image: string
@@ -25,6 +24,26 @@ export interface IUserPost {
   username: string
   photo: string
 }
+
+export interface ISharedPost {
+  _id: string
+  body: string
+  image: string
+  privacy: string
+  user: IUserSheredPost
+}
+
+export interface IUserSheredPost {
+  _id: string
+  name: string
+  username: string
+  photo: string
+  followersCount: number
+  followingCount: number
+  bookmarksCount: number
+  id: string
+}
+
 
 export interface ITopComment {
   _id: string

@@ -1,4 +1,4 @@
-import type { IPostCardProps } from "../../../interfaces/post";
+import type { IPost } from "../../../interfaces/post";
 import {
     FaRegHeart,
 } from "react-icons/fa";
@@ -8,15 +8,16 @@ import LikesModal from "./LikesModal/LikesModal";
 import PostHeader from "./PostHeader/PostHeader";
 import PostActions from "./PostActions/PostActions";
 import useCheckMyProfile from "../../../shared/Hooks/useCheckMyProfile";
+import SharedPostCard from "./SharePost/SharePost";
 
-export default function PostCard({ post }: IPostCardProps) {
+export default function PostCard({ post }: { post: IPost }) {
 
     const [isLikesModalOpen, setIsLikesModalOpen] = useState(false)
-    
+
     const { checkProfile, isMyProfile } = useCheckMyProfile()
     useEffect(() => {
         checkProfile(post._id)
-    }, [checkProfile , post._id]);
+    }, [checkProfile, post._id]);
 
     return (
         <>
@@ -31,6 +32,10 @@ export default function PostCard({ post }: IPostCardProps) {
                         <p className="whitespace-pre-wrap wrap-break-word px-4 pb-4 leading-7 text-heading sm:px-5">
                             {post.body}
                         </p>
+                    )}
+
+                    {post.isShare && post.sharedPost && (
+                        <SharedPostCard post={post.sharedPost} />
                     )}
 
                     {/* Post Image */}

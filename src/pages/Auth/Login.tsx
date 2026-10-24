@@ -86,7 +86,7 @@ export default function Login() {
 
         <button
           type="submit"
-          className="w-full"
+          className="w-full btn-primary"
         >
           {isLoading ? <div className="flex items-center justify-center gap-2"><Spinner color="current" /> ...Signing in</div> : " Sign in"}
 

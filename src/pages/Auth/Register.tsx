@@ -50,7 +50,7 @@ export default function Register() {
 
   return (
     <>
-      <h2 className="text-heading text-lg md:text-xl font-medium mt-3">Craete your acount</h2>
+      <h2 className="text-heading text-lg md:text-xl font-medium mt-3">Create your acount</h2>
       <h3 className="text-paragraph text-sm xl:text-md font-medium ">Join Loop and start sharing your moments</h3>
 
       <form onSubmit={handleSubmit(submitForm)} className="w-full space-y-3 mt-4">
@@ -166,7 +166,7 @@ export default function Register() {
 
         <button
           type="submit"
-          className="w-full"
+          className="w-full btn-primary"
         >
           {isLoading ? <div className="flex items-center justify-center gap-2"><Spinner color="current" /> ...Creating acount</div> : "Create acount"}
 
