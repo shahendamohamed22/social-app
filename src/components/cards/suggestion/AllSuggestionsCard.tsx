@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import type { ISuggestionCardProps } from "../../../interfaces/suggestion";
-import useFollow from "../../../shared/Hooks/useFollowUser";
+import useFollow from "../../../shared/Hooks/ActionsHooks/useFollowUser";
 import { Spinner } from "@heroui/react";
 import { FaPlus } from "react-icons/fa";
 

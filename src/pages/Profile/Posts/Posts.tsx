@@ -2,7 +2,7 @@ import type { IPost, IPostsProps } from "../../../interfaces/post"
 import PostCard from "../../../components/cards/posts/PostCard"
 import CreatePost from "../../../components/createPost/CreatePost"
 import { Skeleton } from "@heroui/react"
-import useGetPosts from "../../../shared/Hooks/useGetPosts"
+import useGetPosts from "../../../shared/Hooks/PostHooks/useGetPosts"
 
 export default function Posts({ id, isMyProfile }: IPostsProps) {
 

@@ -1,12 +1,12 @@
 import { RiSendPlaneFill } from 'react-icons/ri'
-import useCreatReply from '../../../shared/Hooks/useCreateReply'
+import useCreatReply from '../../../shared/Hooks/ReplyHooks/useCreateReply'
 import { useContext, useState } from 'react';
 import { Spinner, toast } from '@heroui/react';
 import { profileContext } from '../../../shared/context/MyProfileContext';
 import CommentActions from '../CommentActions/CommentActions';
 import type { IComment, IReply } from '../../../interfaces/comment';
-import useGetReplies from '../../../shared/Hooks/useGetReplies';
-import useLike from '../../../shared/Hooks/useLike';
+import useGetReplies from '../../../shared/Hooks/ReplyHooks/useGetReplies';
+import useLike from '../../../shared/Hooks/ActionsHooks/useLike';
 
 export default function CommentItem({ comment, postId }: { comment: IComment, postId: string }) {
     const { myProfileData } = useContext(profileContext);

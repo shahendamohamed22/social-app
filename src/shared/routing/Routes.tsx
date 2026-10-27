@@ -12,6 +12,7 @@ import FollwersAndFollowing from "../../pages/FollowersAndFollowing/FollwersAndF
 import ProtectedRoute from "../Guards/ProtectedRoute";
 import Layout from "../../layouts/Layout";
 import AuthLayout from "../../layouts/AuthLayout";
+import Settings from "../../pages/Settings/Settings";
 
 export const routes = createBrowserRouter([
     {
@@ -23,6 +24,7 @@ export const routes = createBrowserRouter([
             { path: "/profile/:userId/:type", element: <ProtectedRoute><FollwersAndFollowing /></ProtectedRoute> },
             { path: "/posts/:postId", element: <ProtectedRoute><PostDetails /> </ProtectedRoute> },
             { path: "/saved-posts", element: <ProtectedRoute><Saved /> </ProtectedRoute> },
+            { path: "/settings", element: <ProtectedRoute><Settings /> </ProtectedRoute> },
             { path: "*", element: <NotFound /> },
         ]
     },

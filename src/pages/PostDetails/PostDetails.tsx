@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import PostDetilsCard from "../../components/cards/posts/PostDetilsCard";
-import useGetPosts from "../../shared/Hooks/useGetPosts";
+import useGetPosts from "../../shared/Hooks/PostHooks/useGetPosts";
 
 export default function PostDetails() {
 

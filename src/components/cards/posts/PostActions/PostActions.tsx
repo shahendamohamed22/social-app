@@ -1,12 +1,12 @@
 import { FaBookmark, FaHeart, FaRegBookmark, FaRegCommentDots, FaRegHeart, FaShare } from "react-icons/fa"
-import useLike from "../../../../shared/Hooks/useLike";
-import useBookmark from "../../../../shared/Hooks/useBookMark";
+import useLike from "../../../../shared/Hooks/ActionsHooks/useLike";
+import useBookmark from "../../../../shared/Hooks/ActionsHooks/useBookMark";
 import { useContext, useState } from "react";
 import type { IPostCardProps } from "../../../../interfaces/post";
 import { profileContext } from "../../../../shared/context/MyProfileContext";
 import { Link } from "react-router-dom";
-import useShare from "../../../../shared/Hooks/useShare";
-import ModalEdit from "../../../ModalForEdit/ModalEdit";
+import useShare from "../../../../shared/Hooks/ActionsHooks/useShare";
+import ReusableModal from "../../../ReusableModal/ReusableModal";
 import { toast } from "@heroui/react";
 
 export default function PostActions({ post }: IPostCardProps) {
@@ -26,13 +26,14 @@ export default function PostActions({ post }: IPostCardProps) {
         sharePost({ postId, body }, {
             onSuccess: () => {
                 toast.success("Post is Shared")
+                setIsShare(false);
+                setShareBody("");
             },
             onError: () => {
                 toast.info("Post is already Shared")
             }
         })
 
-        { shareIsPending ? "" : setIsShare(false) }
     };
 
     return (
@@ -65,7 +66,7 @@ export default function PostActions({ post }: IPostCardProps) {
                     className="flex min-w-0 flex-1 items-center justify-center gap-2 rounded-xl bg-transparent px-2 py-3 text-sm font-medium text-paragraph transition hover:bg-primary/10 hover:text-primary"
                 >
                     <FaShare size={15} />
-                    {shareIsPending ? <span>Sharing...</span> : <span>Share</span>}
+                    <span>Share</span>
                 </button>
 
                 <button
@@ -78,7 +79,7 @@ export default function PostActions({ post }: IPostCardProps) {
                 </button>
             </div>
 
-            <ModalEdit isOpened={isShare} changeIsOpened={setIsShare}
+            <ReusableModal isOpened={isShare} changeIsOpened={setIsShare}
                 title="Share post" width="sm:!max-w-2xl">
                 <div>
                     <textarea
@@ -131,7 +132,7 @@ export default function PostActions({ post }: IPostCardProps) {
                         {shareIsPending ? "Sharing..." : "Share"}
                     </button>
                 </div>
-            </ModalEdit>
+            </ReusableModal>
         </>
 
     )

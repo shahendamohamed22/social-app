@@ -1,5 +1,5 @@
 import { Dropdown } from "@heroui/react";
-import useNotifications from "../../shared/Hooks/useNotifications";
+import useNotifications from "../../shared/Hooks/NotificationsHooks/useNotifications";
 import type { INotification } from "../../interfaces/notification";
 import type { Dispatch, ReactNode, SetStateAction } from "react";
 

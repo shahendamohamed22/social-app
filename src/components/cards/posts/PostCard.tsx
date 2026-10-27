@@ -1,19 +1,16 @@
 import type { IPost } from "../../../interfaces/post";
-import {
-    FaRegHeart,
-} from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import LikesModal from "./LikesModal/LikesModal";
 import PostHeader from "./PostHeader/PostHeader";
 import PostActions from "./PostActions/PostActions";
-import useCheckMyProfile from "../../../shared/Hooks/useCheckMyProfile";
+import useCheckMyProfile from "../../../shared/Hooks/ProfileHooks/useCheckMyProfile";
 import SharedPostCard from "./SharePost/SharePost";
 
 export default function PostCard({ post }: { post: IPost }) {
 
     const [isLikesModalOpen, setIsLikesModalOpen] = useState(false)
-
     const { checkProfile, isMyProfile } = useCheckMyProfile()
     useEffect(() => {
         checkProfile(post._id)
@@ -91,7 +88,8 @@ export default function PostCard({ post }: { post: IPost }) {
             </article >
 
 
-            {isLikesModalOpen && <LikesModal setIsLikesModalOpen={setIsLikesModalOpen} postId={post._id} />}
+            {isLikesModalOpen && <LikesModal setIsLikesModalOpen={setIsLikesModalOpen} postId={post._id} />
+            }
 
 
         </>

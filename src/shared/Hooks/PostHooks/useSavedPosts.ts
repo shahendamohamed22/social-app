@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import api from "../api/axiosRequest";
+import api from "../../api/axiosRequest";
 
 export default function useSavedPosts() {
     function getSavedPosts() {

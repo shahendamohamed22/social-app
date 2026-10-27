@@ -1,8 +1,9 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import api from "../api/axiosRequest";
-import { queryClient } from "../../App";
+import api from "../../api/axiosRequest";
+import useInvalidateQueries from "../InvalidQueries/InvalidQueries";
 
 export default function useLike(postId: string) {
+    const { invalidatePosts, invalidateComments } = useInvalidateQueries()
 
     function likePost() {
         return api.put(`posts/${postId}/like`)
@@ -10,9 +11,7 @@ export default function useLike(postId: string) {
     const { mutate: like, isPending: likeIsPending, isSuccess: likeIsSuccess } = useMutation({
         mutationFn: likePost,
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["feeds"] });
-            queryClient.invalidateQueries({ queryKey: ["posts"] });
-            queryClient.invalidateQueries({ queryKey: ["post", postId] });
+            invalidatePosts(postId)
         }
     })
 
@@ -33,8 +32,8 @@ export default function useLike(postId: string) {
     const { mutate: likeComment, isSuccess: likeCommentIsSuccess } = useMutation({
         mutationFn: likeComm,
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["post", postId] });
-            queryClient.invalidateQueries({ queryKey: ["comments"] });
+            invalidatePosts(postId)
+            invalidateComments(postId)
         }
     })
 

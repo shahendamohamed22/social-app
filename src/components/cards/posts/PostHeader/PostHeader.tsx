@@ -4,10 +4,10 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaPen, FaTrash } from "react-icons/fa";
 import { toast } from "@heroui/react";
 import { useEffect, useState } from "react";
-import usePostActions from "../../../../shared/Hooks/usePostActions";
-import ModalEdit from "../../../ModalForEdit/ModalEdit";
+import usePostActions from "../../../../shared/Hooks/PostHooks/usePostActions";
+import ReusableModal from "../../../ReusableModal/ReusableModal";
 import CreatePost from "../../../createPost/CreatePost";
-import useCheckMyProfile from "../../../../shared/Hooks/useCheckMyProfile";
+import useCheckMyProfile from "../../../../shared/Hooks/ProfileHooks/useCheckMyProfile";
 
 export default function PostHeader({ post }: IPostCardProps) {
 
@@ -86,14 +86,14 @@ export default function PostHeader({ post }: IPostCardProps) {
             </div>
 
 
-            <ModalEdit isOpened={isEdit} changeIsOpened={setIsEdit}
+            <ReusableModal isOpened={isEdit} changeIsOpened={setIsEdit}
                 title="Edit Post" width="sm:!max-w-2xl">
                 <CreatePost
                     isEdit={isEdit}
                     setIsEdit={setIsEdit}
                     post={post}
                 />
-            </ModalEdit>
+            </ReusableModal>
 
         </>
     )

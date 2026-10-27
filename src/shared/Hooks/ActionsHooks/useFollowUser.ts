@@ -1,9 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
-import api from "../api/axiosRequest";
-import { queryClient } from "../../App";
+import api from "../../api/axiosRequest";
+import useInvalidateQueries from "../InvalidQueries/InvalidQueries";
 
 export default function useFollow(userId: string) {
 
+    const { invalidateSuggestions, invalidateProfiles } = useInvalidateQueries()
 
     function addFollower() {
         return api.put(`users/${userId}/follow`)
@@ -11,9 +12,8 @@ export default function useFollow(userId: string) {
     const { mutate: follow, isPending, isSuccess } = useMutation({
         mutationFn: addFollower,
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["suggestions"] });
-            queryClient.invalidateQueries({ queryKey: ["userProfile", userId] });
-            queryClient.invalidateQueries({ queryKey: ["myProfile"], });
+            invalidateSuggestions()
+            invalidateProfiles(userId)
         },
     })
 

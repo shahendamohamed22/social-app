@@ -9,6 +9,8 @@ export default function AllSuggestions() {
 
   return (
     <>
+      <title>Loop | Suggestions</title>
+
       <section className="mx-auto max-w-7xl space-y-4 px-4 py-6">
         <header>
           <h2 className="text-heading text-2xl font-bold">Discover People</h2>

@@ -3,7 +3,7 @@ import { useState, type Dispatch, type SetStateAction } from "react";
 import { IoIosCloseCircle } from "react-icons/io";
 import { TbPhotoCirclePlus } from "react-icons/tb";
 import type { IComment } from "../../../interfaces/comment";
-import useCommentActions from "../../../shared/Hooks/useCommentsActions";
+import useCommentActions from "../../../shared/Hooks/CommentHooks/useCommentsActions";
 
 export default function ModalCommentEdit({ comment, changeIsOpened }: { comment: IComment, changeIsOpened: Dispatch<SetStateAction<boolean>> }) {
 

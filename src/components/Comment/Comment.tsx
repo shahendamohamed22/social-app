@@ -1,6 +1,6 @@
 import CommentItem from "./CommentItem/CommentItem";
 import type { IComment } from "../../interfaces/comment";
-import useGetComments from "../../shared/Hooks/useGetComments";
+import useGetComments from "../../shared/Hooks/CommentHooks/useGetComments";
 
 
 export default function Comment({ postId }: { postId: string }) {

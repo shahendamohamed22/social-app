@@ -1,10 +1,17 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import type { ISharedPost } from "../../../../interfaces/post";
 
 
 export default function SharedPostCard({ post }: { post: ISharedPost }) {
+    const navigate = useNavigate()
+
     return (
-        <Link to={`/posts/${post._id}`} >
+        <div onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            navigate(`/posts/${post._id}`);
+        }}
+            className="cursor-pointer">
             <div className="mt-4 rounded-xl border border-primary/10 bg-background p-4">
                 {/* Original Post User */}
                 <div className="flex items-center gap-3">
@@ -41,6 +48,6 @@ export default function SharedPostCard({ post }: { post: ISharedPost }) {
                     />
                 )}
             </div>
-        </Link>
+        </div>
     );
 }

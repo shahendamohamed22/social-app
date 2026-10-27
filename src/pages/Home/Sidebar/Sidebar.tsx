@@ -32,7 +32,7 @@ export default function Sidebar() {
   }
 
   return (
-    <aside className="sticky top-20 hidden h-fit w-full rounded-2xl border border-primary/10 bg-card p-4 shadow-sm lg:block text-right">
+    <aside className="sticky top-20 h-fit w-full rounded-2xl border border-primary/10 bg-card p-4 text-right shadow-sm">
       {/* Profile */}
       <NavLink
         to="/profile"

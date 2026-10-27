@@ -9,8 +9,11 @@ import { Spinner, toast } from "@heroui/react";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authContext } from "../../shared/context/AuthContext";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 export default function Register() {
+  const [hidePassword, setHidePassword] = useState<boolean>(true)
+  const [hideRePassword, setHideRePassword] = useState<boolean>(true)
 
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useContext(authContext)
@@ -22,7 +25,7 @@ export default function Register() {
   });
 
   async function submitForm(formData: IRegister) {
-  
+
     if (isLoading) return;
 
     try {
@@ -143,11 +146,19 @@ export default function Register() {
             Password
           </label>
 
-          <input className="input-field px-4 py-1.5"
-            {...register("password")}
-            type="password"
-            placeholder="Create a password"
-          />
+          <div className="relative">
+            <input className="input-field px-4 py-1.5"
+              {...register("password")}
+              type={hidePassword ? "password" : "text"}
+              placeholder="Create a password"
+            />
+            <button type="button"
+              onClick={() => setHidePassword(!hidePassword)}>
+              {hidePassword ? <FaRegEye size={25} className="absolute top-2.5 right-3 text-paragraph" />
+                : <FaRegEyeSlash size={25} className="absolute top-2.5 right-3 text-paragraph" />}
+            </button>
+          </div>
+
           {errors.password && <p className="text-red-500 mt-1">{errors.password.message}</p>}
         </div>
 
@@ -156,11 +167,19 @@ export default function Register() {
             Confirm Password
           </label>
 
-          <input className="input-field px-4 py-1.5"
-            {...register("rePassword")}
-            placeholder="Confirm the Password"
-            type="password"
-          />
+          <div className="relative">
+            <input className="input-field px-4 py-1.5"
+              {...register("rePassword")}
+              type={hideRePassword ? "password" : "text"}
+              placeholder="Create a password"
+            />
+            <button type="button"
+              onClick={() => setHideRePassword(!hideRePassword)}>
+              {hideRePassword ? <FaRegEye size={25} className="absolute top-2.5 right-3 text-paragraph" />
+                : <FaRegEyeSlash size={25} className="absolute top-2.5 right-3 text-paragraph" />}
+            </button>
+          </div>
+
           {errors.rePassword && <p className="text-red-500 mt-1">{errors.rePassword.message}</p>}
         </div>
 

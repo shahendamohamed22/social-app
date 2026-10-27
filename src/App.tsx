@@ -6,13 +6,12 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AuthContextProvider from "./shared/context/AuthContextProvider";
 import MyProfileContextProvider from "./shared/context/MyProfileContextProvider";
 import NotificationContextProvider from "./shared/context/NotificationContextProvider";
-import { AiOutlineLike } from "react-icons/ai";
 
-export const queryClient = new QueryClient({
+const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       staleTime: 60000 * 3,
-      gcTime: 60000 * 2 ,
+      gcTime: 60000 * 2,
       retry: 1
     }
   }

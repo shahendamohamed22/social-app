@@ -1,5 +1,5 @@
 import { Spinner } from "@heroui/react"
-import useLike from "../../../../shared/Hooks/useLike"
+import useLike from "../../../../shared/Hooks/ActionsHooks/useLike"
 import type { Dispatch, SetStateAction } from "react"
 import type { IUser } from "../../../../interfaces/userProfile"
 

@@ -6,7 +6,7 @@ import Posts from "./Posts/Posts";
 import { Skeleton } from "@heroui/react";
 import About from "./About/About";
 import ProfileHeader from "./Header/ProfileHeader";
-import useUserProfile from "../../shared/Hooks/useUserProfile";
+import useUserProfile from "../../shared/Hooks/ProfileHooks/useUserProfile";
 
 export default function Profile() {
 
@@ -16,17 +16,14 @@ export default function Profile() {
 
   const isMyProfile = !userId || userId === myProfileData?._id
 
-  const {userData} = useUserProfile(userId)
+  const { userData } = useUserProfile(userId)
 
   const profile = isMyProfile ? myProfileData : userData?.user
   const id = profile?._id;
 
   if (!profile) {
     return <div className="container mx-auto flex items-center gap-4 rounded-2xl bg-card p-5">
-      {/* Profile Picture */}
       <Skeleton className="h-20 w-20 shrink-0 rounded-full" />
-
-      {/* Profile Info */}
       <div className="flex-1 space-y-3">
         <Skeleton className="h-5 w-40 rounded-lg" />
         <Skeleton className="h-3 w-28 rounded-lg" />
@@ -40,24 +37,23 @@ export default function Profile() {
   }
 
   return (
-    <div className="mx-auto w-full max-w-7xl px-4 py-6">
-      <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-12">
+    <>
+      <title>{`Loop | ${profile.name}`}</title>
+      <div className="mx-auto w-full max-w-7xl px-4 py-6">
+        <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-12">
 
-        {/* Profile and Posts: 9 columns */}
-        <main className="min-w-0 space-y-6 lg:col-span-8">
+          <main className="min-w-0 space-y-6 lg:col-span-8">
 
-          {/* Profile Header */}
-          <ProfileHeader profile={profile} isFollow={userData?.isFollowing} isMyProfile={isMyProfile} />
+            <ProfileHeader profile={profile} isFollow={userData?.isFollowing} isMyProfile={isMyProfile} />
 
-          {/* Posts */}
-          <section className="space-y-4">
-            <Posts id={id} isMyProfile={isMyProfile} />
-          </section>
-        </main>
+            <section className="space-y-4">
+              <Posts id={id} isMyProfile={isMyProfile} />
+            </section>
+          </main>
 
-        {/* About */}
-        <About profile={profile} />
+          <About profile={profile} />
+        </div>
       </div>
-    </div>
+    </>
   );
 }

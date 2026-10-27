@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { FiBookmark, FiUserPlus, FiUsers, FiCamera, FiTrash2 } from "react-icons/fi";
 import type { IProfileProps } from "../../../interfaces/myProfile";
-import useFollow from "../../../shared/Hooks/useFollowUser";
+import useFollow from "../../../shared/Hooks/ActionsHooks/useFollowUser";
 import { Spinner, toast } from "@heroui/react";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useUploadPhoto from "../../../shared/Hooks/useUploadPhoto";
-import useSavedPosts from "../../../shared/Hooks/useSavedPosts";
+import useSavedPosts from "../../../shared/Hooks/PostHooks/useSavedPosts";
 
 export default function ProfileHeader({ profile, isFollow, isMyProfile }: IProfileProps) {
     const { follow, isPending } = useFollow(profile._id);
@@ -16,7 +16,6 @@ export default function ProfileHeader({ profile, isFollow, isMyProfile }: IProfi
     const [showPhotoOptions, setShowPhotoOptions] = useState(false);
 
     const { uploadPhoto, photoIsPending } = useUploadPhoto()
-    const [coverPreview, setCoverPreview] = useState<string>("")
 
     function handleProfilePhoto(file: File | string) {
         const formData = new FormData()
@@ -40,9 +39,9 @@ export default function ProfileHeader({ profile, isFollow, isMyProfile }: IProfi
         <section className="overflow-hidden rounded-2xl border border-primary/10 bg-card shadow-sm">
             {/* Cover */}
             <div className="relative h-40 bg-linear-to-r from-primary/40 via-primary/20 to-background sm:h-52">
-                {profile.cover || coverPreview && (
+                {profile.cover && (
                     <img
-                        src={profile.cover || coverPreview}
+                        src={profile.cover}
                         alt="Cover"
                         className="h-full w-full object-cover"
                     />
@@ -53,15 +52,7 @@ export default function ProfileHeader({ profile, isFollow, isMyProfile }: IProfi
                     <FiCamera size={22} />
                 </label>
 
-                <input id="cover-upload" type="file" accept="image/*" className="hidden"
-                    onChange={(e) => {
-                        const file = e.target.files?.[0];
-
-                        if (file) {
-                            setCoverPreview(URL.createObjectURL(file))
-                            toast.success("Cover photo is updated")
-                        }
-                    }} />
+                <input id="cover-upload" type="file" accept="image/*" className="hidden"/>
 
             </div>
 

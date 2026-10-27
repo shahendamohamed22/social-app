@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import api from "../api/axiosRequest"
+import api from "../../api/axiosRequest"
 
 export default function useGetPosts(postId: string | undefined, id: string | undefined) {
 
@@ -18,7 +18,7 @@ export default function useGetPosts(postId: string | undefined, id: string | und
         return api.get("posts?limit=20")
     }
 
-    const { isLoading: feedsIsLoading, data: feeds } = useQuery({
+    const { isLoading: feedsIsLoading, data: feeds, isError } = useQuery({
         queryKey: ["feeds"],
         queryFn: getPosts,
         select: (data) => data?.data.data.posts
@@ -36,5 +36,5 @@ export default function useGetPosts(postId: string | undefined, id: string | und
         select: (data) => data?.data.data.posts
     })
 
-    return { post, PostDetailsIsLoading, feedsIsLoading, feeds, posts, postIsLoading }
+    return { post, PostDetailsIsLoading, feedsIsLoading, feeds, isError, posts, postIsLoading }
 }

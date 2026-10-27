@@ -1,8 +1,8 @@
 import { useContext, useId, useState } from "react";
 import { FiImage, FiGlobe } from "react-icons/fi";
 import { profileContext } from "../../shared/context/MyProfileContext";
-import useCreatePost from "../../shared/Hooks/useCreatePosts";
-import usePostActions from "../../shared/Hooks/usePostActions";
+import useCreatePost from "../../shared/Hooks/PostHooks/useCreatePosts";
+import usePostActions from "../../shared/Hooks/PostHooks/usePostActions";
 import { toast } from "@heroui/react";
 import type { ICratePostProps } from "../../interfaces/postActions";
 import { IoIosCloseCircle } from "react-icons/io";

@@ -1,20 +1,20 @@
 import { Modal } from "@heroui/react";
 import type { Dispatch, ReactNode, SetStateAction } from "react";
 
-export interface IModalEditProps {
+export interface IReusableModalProps {
     children: ReactNode;
     isOpened: boolean;
     changeIsOpened: Dispatch<SetStateAction<boolean>>;
     title: string;
-    width? : string
+    width?: string
 }
 
-export default function ModalEdit({ children, isOpened, changeIsOpened, title , width } : IModalEditProps) {
+export default function ReusableModal({ children, isOpened, changeIsOpened, title, width }: IReusableModalProps) {
 
 
     return (
         <Modal isOpen={isOpened} onOpenChange={changeIsOpened}>
-            <Modal.Backdrop>
+            <Modal.Backdrop >
                 <Modal.Container>
                     <Modal.Dialog className={`sm:max-w-90 ${width || ""}`}>
                         <Modal.CloseTrigger />

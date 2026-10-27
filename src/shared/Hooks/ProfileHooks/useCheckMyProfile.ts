@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { profileContext } from "../context/MyProfileContext";
+import { profileContext } from "../../context/MyProfileContext";
 
 export default function useCheckMyProfile() {
 

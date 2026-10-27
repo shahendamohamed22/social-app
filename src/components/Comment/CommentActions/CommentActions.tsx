@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaPen, FaTrash } from "react-icons/fa";
-import useCommentActions from "../../../shared/Hooks/useCommentsActions";
+import useCommentActions from "../../../shared/Hooks/CommentHooks/useCommentsActions";
 import { toast } from "@heroui/react";
 import type { IComment } from "../../../interfaces/comment";
-import useCheckMyProfile from "../../../shared/Hooks/useCheckMyProfile";
-import ModalEdit from "../../ModalForEdit/ModalEdit";
+import useCheckMyProfile from "../../../shared/Hooks/ProfileHooks/useCheckMyProfile";
+import ReusableModal from "../../ReusableModal/ReusableModal";
 import ModalCommentEdit from "../ModalCommentEdit/ModalCommentEdit";
 
 export default function CommentActions({ comment }: { comment: IComment }) {
@@ -56,9 +56,9 @@ export default function CommentActions({ comment }: { comment: IComment }) {
                     </div>}
             </div>}
 
-            <ModalEdit isOpened={isEdit} changeIsOpened={setIsEdit} title="Edit Comment">
+            <ReusableModal isOpened={isEdit} changeIsOpened={setIsEdit} title="Edit Comment">
                 <ModalCommentEdit comment={comment} changeIsOpened={setIsEdit} />
-            </ModalEdit>
+            </ReusableModal>
 
 
         </>

@@ -1,8 +1,9 @@
 import { useMutation, useQuery } from "@tanstack/react-query"
-import api from "../api/axiosRequest"
-import { queryClient } from "../../App"
+import api from "../../api/axiosRequest"
+import useInvalidateQueries from "../InvalidQueries/InvalidQueries"
 
 export default function useNotifications() {
+    const { invalidateNotifications } = useInvalidateQueries()
 
     // GET UNREAD NUMBER 
     function unreadNotifications() {
@@ -34,9 +35,8 @@ export default function useNotifications() {
     const { mutate: markSingleNotification, isPending: markOneNotificationPending } = useMutation({
         mutationKey: ['markNotifications'],
         mutationFn: markOneNotification,
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["Notifications"] })
-            queryClient.invalidateQueries({ queryKey: ["NotificationCount"]})
+          onSuccess: () => {
+            invalidateNotifications()
         }
     })
 
@@ -49,10 +49,9 @@ export default function useNotifications() {
         mutationKey: ['markNotifications'],
         mutationFn: markAllNotifications,
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["Notifications"] })
+            invalidateNotifications()
         }
     })
-
 
 
     return {

@@ -1,11 +1,16 @@
 import PostCard from "../../../components/cards/posts/PostCard";
 import type { IPost } from "../../../interfaces/post";
 import { Skeleton } from "@heroui/react";
-import useGetPosts from "../../../shared/Hooks/useGetPosts";
+import useGetPosts from "../../../shared/Hooks/PostHooks/useGetPosts";
+import { useContext } from "react";
+import { authContext } from "../../../shared/context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Feeds() {
 
-    const { feeds, feedsIsLoading } = useGetPosts("" , "");
+    const { feeds, feedsIsLoading, isError } = useGetPosts("", "");
+    const { logout } = useContext(authContext)
+    const navigate = useNavigate()
 
     if (feedsIsLoading) {
         return [1, 2, 3].map((i) => <div key={i} className="mb-3 space-y-4 rounded-2xl bg-card p-4">
@@ -25,6 +30,11 @@ export default function Feeds() {
 
             <Skeleton className="h-48 w-full rounded-xl" />
         </div>)
+    }
+
+    if (isError) {
+        logout()
+        navigate("/auth/login");
     }
 
     return (

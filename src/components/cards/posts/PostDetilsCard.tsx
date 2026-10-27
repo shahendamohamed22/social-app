@@ -1,13 +1,13 @@
 import { FaRegHeart } from "react-icons/fa";
 import { RiSendPlaneFill } from "react-icons/ri";
 import { useEffect, useState } from "react";
-import useCreatComment from "../../../shared/Hooks/useCreateComment";
+import useCreatComment from "../../../shared/Hooks/CommentHooks/useCreateComment";
 import { Spinner, toast } from "@heroui/react";
 import Comment from "../../Comment/Comment";
 import LikesModal from "./LikesModal/LikesModal";
 import PostHeader from "./PostHeader/PostHeader";
 import PostActions from "./PostActions/PostActions";
-import useCheckMyProfile from "../../../shared/Hooks/useCheckMyProfile";
+import useCheckMyProfile from "../../../shared/Hooks/ProfileHooks/useCheckMyProfile";
 import { TbPhotoCirclePlus } from "react-icons/tb";
 import { IoIosCloseCircle } from "react-icons/io";
 import type { IPost } from "../../../interfaces/post";

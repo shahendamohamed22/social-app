@@ -13,3 +13,8 @@ export const loginDefaultValues = {
     email: "",
     password: "",
 } 
+
+export const changePasswordDefaultValues = {
+    password : "",
+    newPassword : ""
+}

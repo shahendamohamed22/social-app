@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import api from "../api/axiosRequest"
+import api from "../../api/axiosRequest"
 
 export default function useGetReplies(postId: string, commentId: string, isReplyOpen: boolean) {
     const { data: replies, isLoading: repliesLoading } = useQuery({

@@ -9,9 +9,10 @@ import { Spinner, toast } from "@heroui/react";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authContext } from "../../shared/context/AuthContext";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 export default function Login() {
-
+  const [hidePassword, setHidePassword] = useState<boolean>(true)
   const { login } = useContext(authContext)
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ export default function Login() {
       setIsLoading(true);
 
       const { data } = await axios.post(`${base_Url}users/signin`, formData)
-      
+
       toast.success(data.message);
       login(data.data.token)
 
@@ -76,11 +77,18 @@ export default function Login() {
             Password
           </label>
 
-          <input className="input-field px-4 py-1.5"
-            {...register("password")}
-            type="password"
-            placeholder="Create a password"
-          />
+          <div className="relative">
+            <input className="input-field px-4 py-1.5"
+              {...register("password")}
+              type={hidePassword ? "password" : "text"}
+              placeholder="Create a password"
+            />
+            <button type="button"
+              onClick={() => setHidePassword(!hidePassword)}>
+              {hidePassword ? <FaRegEye size={25} className="absolute top-2.5 right-3 text-paragraph" />
+                : <FaRegEyeSlash size={25} className="absolute top-2.5 right-3 text-paragraph" />}
+            </button>
+          </div>
           {errors.password && <p className="text-red-500 mt-1">{errors.password.message}</p>}
         </div>
 

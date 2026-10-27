@@ -52,13 +52,13 @@ function Navbar() {
 
             {/* Notifications */}
             <NotificationsDropdown isOpen={notificationsIsOpened} onOpenChange={setNotificationsIsOpened}>
-              <button
+              <div
                 onClick={() => setNotificationsIsOpened(!notificationsIsOpened)}
                 className="relative ml-1 rounded-xl flex size-10 items-center justify-center round hover:bg-primary/10 hover:text-primary text-heading transition "
               >
                 <FiBell size={21} />
                 <span className="absolute -right-2 -top-2 text-xs font-bold rounded-full px-1.5 py-1 bg-red-500 ring-2 ring-background text-input" >{notificationNumber}</span>
-              </button>
+              </div>
             </NotificationsDropdown>
 
 
