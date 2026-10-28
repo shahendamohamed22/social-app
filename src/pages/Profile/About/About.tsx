@@ -26,7 +26,7 @@ export default function About({ profile }: IProfileProps) {
     ];
 
     return (
-        <aside className="sticky top-24 min-w-0 lg:col-span-4">
+        <aside className="sticky top-24 min-w-0">
             <section className="rounded-2xl border border-primary/10 bg-card p-5 shadow-sm">
                 <h2 className="text-lg font-bold text-heading">About</h2>
 

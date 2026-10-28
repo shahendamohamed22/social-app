@@ -39,19 +39,23 @@ export default function Profile() {
   return (
     <>
       <title>{`Loop | ${profile.name}`}</title>
-      <div className="mx-auto w-full max-w-7xl px-4 py-6">
-        <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-12">
+      <div className="mx-auto w-full max-w-7xl ">
+        <div className="grid grid-cols-1 items-start gap-6 profile-BP:grid-cols-12">
 
-          <main className="min-w-0 space-y-6 lg:col-span-8">
+          <main className="min-w-0 space-y-6 profile-BP:col-span-8">
 
             <ProfileHeader profile={profile} isFollow={userData?.isFollowing} isMyProfile={isMyProfile} />
-
+            <section className="profile-BP:hidden">
+              <About profile={profile} />
+            </section>
             <section className="space-y-4">
               <Posts id={id} isMyProfile={isMyProfile} />
             </section>
           </main>
 
-          <About profile={profile} />
+          <section className="hidden profile-BP:block profile-BP:col-span-4">
+            <About profile={profile} />
+          </section>
         </div>
       </div>
     </>

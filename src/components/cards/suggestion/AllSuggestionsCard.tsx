@@ -9,7 +9,7 @@ export default function AllSuggestionsCard({ suggestion }: ISuggestionCardProps)
     const { follow, isPending, isSuccess } = useFollow(suggestion._id)
 
     return (
-        <div className=" group flex flex-col items-center rounded-2xl border border-primary/10 bg-card p-5 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg">
+        <div className="group flex flex-col items-center rounded-2xl border border-primary/10 bg-card p-5 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg">
             {/* Profile Photo */}
             <div className="mb-3 h-20 w-20 overflow-hidden rounded-full bg-background ring-4 ring-primary/10 transition-transform duration-300 group-hover:scale-105">
                 <Link to={`/profile/${suggestion._id}`}>

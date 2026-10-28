@@ -5,6 +5,7 @@ import useGetPosts from "../../../shared/Hooks/PostHooks/useGetPosts";
 import { useContext } from "react";
 import { authContext } from "../../../shared/context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import CreatePost from "../../../components/createPost/CreatePost";
 
 export default function Feeds() {
 
@@ -39,6 +40,9 @@ export default function Feeds() {
 
     return (
         <>
+            <section className="mb-4">
+                <CreatePost />
+            </section>
             {feeds.map((post: IPost) => <PostCard key={post._id} post={post} />)}
         </>
     )

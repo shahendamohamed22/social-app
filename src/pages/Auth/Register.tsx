@@ -53,8 +53,8 @@ export default function Register() {
 
   return (
     <>
-      <h2 className="text-heading text-lg md:text-xl font-medium mt-3">Create your acount</h2>
-      <h3 className="text-paragraph text-sm xl:text-md font-medium ">Join Loop and start sharing your moments</h3>
+      <h2 className="text-heading text-lg md:text-xl font-semibold mt-4">Create your acount</h2>
+      <h3 className="text-paragraph text-sm xl:text-md font-medium mt-2">Join Loop and start sharing your moments</h3>
 
       <form onSubmit={handleSubmit(submitForm)} className="w-full space-y-3 mt-4">
         <div>
@@ -69,7 +69,7 @@ export default function Register() {
           {errors.name && <p className="text-red-500 mt-1">{errors.name.message}</p>}
         </div>
 
-        <div>
+        <div className="mt-5">
           <label htmlFor="username" className="form-label">
             Username
           </label>
@@ -83,7 +83,7 @@ export default function Register() {
           {errors.username && <p className="text-red-500 mt-1">{errors.username.message}</p>}
         </div>
 
-        <div>
+        <div className="mt-5">
           <label htmlFor="email" className="form-label">
             Email Address
           </label>
@@ -97,7 +97,7 @@ export default function Register() {
           {errors.email && <p className="text-red-500 mt-1">{errors.email.message}</p>}
         </div>
 
-        <div>
+        <div className="mt-5">
           <label htmlFor="dateOfBirth" className="form-label">
             Date of Birth
           </label>
@@ -110,7 +110,7 @@ export default function Register() {
           {errors.dateOfBirth && <p className="text-red-500 mt-1">{errors.dateOfBirth.message}</p>}
         </div>
 
-        <div>
+        <div className="mt-5">
           <label className="form-label">
             Gender
           </label>
@@ -141,7 +141,7 @@ export default function Register() {
         </div>
 
 
-        <div>
+        <div className="mt-5">
           <label htmlFor="password" className="form-label">
             Password
           </label>
@@ -162,7 +162,7 @@ export default function Register() {
           {errors.password && <p className="text-red-500 mt-1">{errors.password.message}</p>}
         </div>
 
-        <div>
+        <div className="mt-5">
           <label htmlFor="rePassword" className="form-label">
             Confirm Password
           </label>
@@ -185,7 +185,7 @@ export default function Register() {
 
         <button
           type="submit"
-          className="w-full btn-primary"
+          className="w-full btn-primary mt-3"
         >
           {isLoading ? <div className="flex items-center justify-center gap-2"><Spinner color="current" /> ...Creating acount</div> : "Create acount"}
 

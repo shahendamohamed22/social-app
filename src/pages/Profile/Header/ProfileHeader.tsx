@@ -58,7 +58,7 @@ export default function ProfileHeader({ profile, isFollow, isMyProfile }: IProfi
 
             <div className="px-5 pb-6 sm:px-7">
                 {/* Profile info */}
-                <div className="flex flex-wrap items-end gap-4">
+                <div className="flex flex-wrap flex-col md:flex-row items-center justify-center center md:items-end gap-4">
                     <div className="relative -mt-14 shrink-0 sm:-mt-16">
                         <button
                             type="button"
@@ -69,11 +69,11 @@ export default function ProfileHeader({ profile, isFollow, isMyProfile }: IProfi
                                 <div className="flex items-center justify-center rounded-full border border-paragraph/20 bg-card object-cover sm:size-32">
                                     <Spinner color="current" />
                                 </div> : <img src={profile.photo} alt={profile.name}
-                                    className="size-24 rounded-full border-4 border-card bg-card object-cover sm:size-32" />
+                                    className="size-40 rounded-full border-4 border-card bg-card object-cover md:size-32" />
                             }
 
                             {isMyProfile && (
-                                <span className="absolute bottom-1 right-1 rounded-full bg-primary p-2 text-white">
+                                <span className="absolute bottom-2 right-2 rounded-full bg-primary p-2 text-white">
                                     <FiCamera size={16} />
                                 </span>
                             )}
@@ -110,11 +110,11 @@ export default function ProfileHeader({ profile, isFollow, isMyProfile }: IProfi
                         )}
                     </div>
 
-                    <div className="min-w-0 flex-1 pb-1">
+                    <div className="min-w-0 flex-1 pb-1 ">
                         <h1 className="mt-3 wrap-break-word text-2xl font-bold text-heading sm:text-3xl">
                             {profile.name}
                         </h1>
-                        <p className="mt-1 text-sm text-paragraph">
+                        <p className="mt-1 text-sm text-paragraph text-center md:text-start">
                             @{profile.username}
                         </p>
                     </div>

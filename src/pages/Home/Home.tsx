@@ -14,11 +14,11 @@ export default function Home() {
           <Suggestions />
         </section>
 
-        <section className="col-span-12 md:col-span-8 xl:col-span-6">
+        <section className="col-span-12 lg:col-span-8 xl:col-span-6">
           <Feeds />
         </section>
 
-        <section className="hidden md:block md:col-span-4 xl:col-span-3">
+        <section className="hidden lg:block lg:col-span-4 xl:col-span-3">
           <Sidebar />
         </section>
       </div>

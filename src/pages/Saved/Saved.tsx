@@ -10,7 +10,7 @@ export default function Saved() {
     return (
         <>
             <title>Loop | Saved posts</title>
-            <div className="mx-auto max-w-7xl space-y-4 px-4 py-6">
+            <div className="mx-auto max-w-7xl space-y-4 ">
                 <div className="mb-6">
                     <h2 className="text-2xl font-bold text-gray-900">
                         Saved Posts

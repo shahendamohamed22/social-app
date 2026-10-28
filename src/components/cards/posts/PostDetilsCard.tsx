@@ -55,7 +55,7 @@ export default function PostDetilsCard({ post }: { post: IPost }) {
 
     useEffect(() => {
         checkProfile(post.user._id)
-    }, [checkProfile , post.user._id]);
+    }, [checkProfile, post.user._id]);
 
     return (
         <>
@@ -63,19 +63,31 @@ export default function PostDetilsCard({ post }: { post: IPost }) {
                 <div className="flex h-[calc(100vh-100px)] flex-col sm:flex-row">
 
                     {/* Left Side - Scrollable */}
-                    <div className="flex min-w-0 flex-1 flex-col overflow-y-auto p-4 sm:p-5">
+                    <div className="  min-w-0 flex-1 overflow-y-auto px-4 pt-4">
 
                         {/* User Info */}
                         <PostHeader post={post} isMyProfile={isMyProfile} />
 
                         {/* Post Text */}
                         {post.body && (
-                            <p className="mt-4 whitespace-pre-wrap wrap-break-word leading-7 text-heading">
+                            <p className="mb-2 whitespace-pre-wrap wrap-break-word leading-7 text-heading">
                                 {post.body}
                             </p>
                         )}
 
+                        {post.image && (
+                            <div className="profile-BP:hidden overflow-hidden bg-background">
+                                <img
+                                    src={post.image}
+                                    alt="Post"
+                                    className="max-h-125 w-full object-contain transition duration-500 group-hover:scale-[1.01]"
+                                />
+                            </div>
+                        )}
+
                         {/* Actions */}
+                        <div className="mt-4 border-t border-primary/10 " />
+
                         <PostActions post={post} />
 
                         {/* Counts */}
@@ -90,9 +102,12 @@ export default function PostDetilsCard({ post }: { post: IPost }) {
                         </div>
 
                         {/* comments*/}
-                        <Comment postId={post._id} />
+                        <section className="py-2">
+                            <Comment postId={post._id} />
 
-                        <div className="sticky bottom-0 mt-auto border-t border-primary/10 bg-card pt-3">
+                        </section>
+
+                        <div className="sticky bottom-0  border-t border-primary/10 bg-card pt-3 py-4">
                             <div className="flex items-center gap-3">
                                 <div className="flex min-w-0 flex-1 items-center gap-3 rounded-full border border-primary/15 bg-background px-4 py-3 transition focus-within:border-primary">
                                     <input
@@ -140,7 +155,7 @@ export default function PostDetilsCard({ post }: { post: IPost }) {
 
                     {/* Right Side - Image */}
                     {post.image && (
-                        <div className="h-64 shrink-0 bg-background sm:sticky sm:top-0 sm:h-[calc(100vh-100px)] sm:w-[42%]">
+                        <div className="hidden profile-BP:block h-64 shrink-0 bg-background sm:sticky sm:top-0 sm:h-[calc(100vh-100px)] sm:w-[42%]">
                             <img
                                 src={post.image}
                                 alt="Post"

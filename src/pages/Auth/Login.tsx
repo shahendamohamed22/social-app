@@ -54,8 +54,8 @@ export default function Login() {
 
   return (
     <>
-      <h2 className="text-heading text-lg md:text-xl font-medium mt-3">Welcome back !</h2>
-      <h3 className="text-paragraph text-sm xl:text-md font-medium ">Join Loop and start sharing your moments</h3>
+      <h2 className="text-heading text-lg md:text-xl font-semibold mt-4">Welcome back !</h2>
+      <h3 className="text-paragraph text-sm xl:text-md font-medium mt-2">Join Loop and start sharing your moments</h3>
 
       <form onSubmit={handleSubmit(submitForm)} className="w-full space-y-3 mt-4">
         <div>
@@ -72,7 +72,7 @@ export default function Login() {
           {errors.email && <p className="text-red-500 mt-1">{errors.email.message}</p>}
         </div>
 
-        <div>
+        <div className="mt-5">
           <label htmlFor="password" className="form-label">
             Password
           </label>
@@ -94,7 +94,7 @@ export default function Login() {
 
         <button
           type="submit"
-          className="w-full btn-primary"
+          className="w-full btn-primary mt-3"
         >
           {isLoading ? <div className="flex items-center justify-center gap-2"><Spinner color="current" /> ...Signing in</div> : " Sign in"}
 

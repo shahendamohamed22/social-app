@@ -36,10 +36,7 @@ export default function CommentItem({ comment, postId }: { comment: IComment, po
 
     return (
         <>
-            <div
-                key={comment._id}
-                className="mt-4 border-t border-primary/10 pt-4"
-            >
+            <div key={comment._id} className="mt-4 border-t border-primary/10 pt-4">
                 {/* Main Comment */}
                 <div className="flex items-start gap-3">
                     <img

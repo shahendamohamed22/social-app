@@ -34,25 +34,17 @@ export default function Sidebar() {
   return (
     <aside className="sticky top-20 h-fit w-full rounded-2xl border border-primary/10 bg-card p-4 text-right shadow-sm">
       {/* Profile */}
-      <NavLink
-        to="/profile"
-        className={({ isActive }) =>
-          `group flex items-center gap-3 rounded-xl p-3 transition-colors ${isActive
-            ? "bg-primary/10 text-primary"
-            : "text-heading hover:bg-primary/5"
-          }`
-        }
-      >
+      <NavLink to="/profile" className={({ isActive }) =>
+        `group flex items-center gap-3 rounded-xl p-3 transition-colors ${isActive
+          ? "bg-primary/10 text-primary"
+          : "text-heading hover:bg-primary/5"
+        }`}>
         <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-primary/10 text-primary">
-          {myProfileData?.photo ? (
-            <img
-              src={myProfileData.photo}
-              alt={myProfileData.name}
-              className="h-full w-full object-cover"
-            />
-          ) : (
+          {myProfileData?.photo ?
+            <img src={myProfileData.photo} alt={myProfileData.name}
+              className="h-full w-full object-cover" /> :
             <FiUser size={23} />
-          )}
+          }
         </div>
 
         <div className="min-w-0 flex-1">
@@ -70,12 +62,9 @@ export default function Sidebar() {
       <div className="my-4 border-t border-primary/10" />
 
       {/* Navigation */}
-
       <nav className="space-y-1">
         {links.map(({ title, to, icon: Icon }) => (
-          <NavLink
-            key={title}
-            to={to}
+          <NavLink key={title} to={to}
             className={({ isActive }) =>
               `group flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition-colors ${isActive
                 ? "bg-primary/10 text-primary"

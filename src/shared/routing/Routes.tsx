@@ -13,6 +13,7 @@ import ProtectedRoute from "../Guards/ProtectedRoute";
 import Layout from "../../layouts/Layout";
 import AuthLayout from "../../layouts/AuthLayout";
 import Settings from "../../pages/Settings/Settings";
+import Notifications from "../../pages/Notifications/Notifications";
 
 export const routes = createBrowserRouter([
     {
@@ -25,6 +26,7 @@ export const routes = createBrowserRouter([
             { path: "/posts/:postId", element: <ProtectedRoute><PostDetails /> </ProtectedRoute> },
             { path: "/saved-posts", element: <ProtectedRoute><Saved /> </ProtectedRoute> },
             { path: "/settings", element: <ProtectedRoute><Settings /> </ProtectedRoute> },
+            { path: "/notifications", element: <ProtectedRoute><Notifications /> </ProtectedRoute> },
             { path: "*", element: <NotFound /> },
         ]
     },

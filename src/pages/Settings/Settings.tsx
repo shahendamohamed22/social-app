@@ -6,7 +6,7 @@ export default function Settings() {
     return (
         <>
             <title>Loop | Settings</title>
-            <div className="mx-auto w-full max-w-3xl px-4 py-6 sm:px-6">
+            <div className="mx-auto w-full max-w-3xl sm:px-6">
                 {/* Page Header */}
                 <div className="mb-6">
                     <h1 className="text-2xl font-bold text-heading sm:text-3xl">

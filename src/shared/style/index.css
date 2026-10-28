@@ -19,13 +19,15 @@
 
   /* Input backgrounds */
   --color-input: #F8F7FF;
+
+  --breakpoint-profile-BP: 950px;
 }
 
 @layer components {
 
   /* Inputs */
   .input-field {
-    @apply w-full min-h-11 rounded-lg bg-input px-4 py-3 text-heading ring-1 ring-primary/10 shadow placeholder:text-paragraph outline-none focus:ring-2 focus:ring-primary transition;
+    @apply w-full min-h-11 rounded-lg mt-1.5 bg-input px-4 py-3 text-heading ring-1 ring-primary/10 shadow placeholder:text-paragraph outline-none focus:ring-2 focus:ring-primary transition;
   }
 
   .form-label {
