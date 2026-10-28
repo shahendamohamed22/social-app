@@ -3,9 +3,10 @@ import { routes } from "./shared/routing/Routes"
 
 import { Toast } from "@heroui/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import AuthContextProvider from "./shared/context/AuthContextProvider";
-import MyProfileContextProvider from "./shared/context/MyProfileContextProvider";
-import NotificationContextProvider from "./shared/context/NotificationContextProvider";
+import AuthContextProvider from "./shared/context/AuthContext/AuthContextProvider";
+import MyProfileContextProvider from "./shared/context/MyProfileContext/MyProfileContextProvider";
+import NotificationContextProvider from "./shared/context/NotificationContext/NotificationContextProvider";
+import ThemeContextProvider from "./shared/context/ThemeContext/ThemeContextProvider";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <>
+    <ThemeContextProvider>
       <QueryClientProvider client={queryClient}>
         <AuthContextProvider>
           <NotificationContextProvider>
@@ -32,6 +34,7 @@ function App() {
           </NotificationContextProvider>
         </AuthContextProvider>
       </QueryClientProvider>
+    </ThemeContextProvider>
 
 
     </>

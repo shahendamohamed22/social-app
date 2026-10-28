@@ -2,7 +2,7 @@ import { RiSendPlaneFill } from 'react-icons/ri'
 import useCreatReply from '../../../shared/Hooks/ReplyHooks/useCreateReply'
 import { useContext, useState } from 'react';
 import { Spinner, toast } from '@heroui/react';
-import { profileContext } from '../../../shared/context/MyProfileContext';
+import { profileContext } from '../../../shared/context/MyProfileContext/MyProfileContext';
 import CommentActions from '../CommentActions/CommentActions';
 import type { IComment, IReply } from '../../../interfaces/comment';
 import useGetReplies from '../../../shared/Hooks/ReplyHooks/useGetReplies';

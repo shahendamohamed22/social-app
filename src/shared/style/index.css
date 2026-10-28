@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "@heroui/styles";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   /* Page background */
   --color-background: #F3F1FF;
@@ -21,6 +23,15 @@
   --color-input: #F8F7FF;
 
   --breakpoint-profile-BP: 950px;
+}
+
+.dark {
+  --color-background: #171624;
+  --color-card: #25243A;
+  --color-primary: #B6ACFF;
+  --color-heading: #F5F3FF;
+  --color-paragraph: #B5B1C8;
+  --color-input: #302E46;
 }
 
 @layer components {
@@ -48,7 +59,7 @@
   .card {
     @apply rounded-2xl bg-card p-5 shadow-sm;
   }
-  
+
 }
 
 body {

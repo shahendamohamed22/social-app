@@ -10,8 +10,8 @@ import Saved from "../../pages/Saved/Saved";
 import PostDetails from "../../pages/PostDetails/PostDetails";
 import FollwersAndFollowing from "../../pages/FollowersAndFollowing/FollwersAndFollowing";
 import ProtectedRoute from "../Guards/ProtectedRoute";
-import Layout from "../../Layouts/Layout";
-import AuthLayout from "../../Layouts/AuthLayout";
+import Layout from "../../layouts/Layout";
+import AuthLayout from "../../layouts/AuthLayout";
 import Settings from "../../pages/Settings/Settings";
 import Notifications from "../../pages/Notifications/Notifications";
 

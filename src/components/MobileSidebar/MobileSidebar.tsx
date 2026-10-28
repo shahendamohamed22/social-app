@@ -2,8 +2,8 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { FiX, FiSettings, FiBookmark, FiUser, FiChevronRight, FiLogOut, FiHome } from "react-icons/fi";
 import { useContext, type Dispatch, type SetStateAction } from "react";
-import { profileContext } from "../../shared/context/MyProfileContext";
-import { authContext } from "../../shared/context/AuthContext";
+import { profileContext } from "../../shared/context/MyProfileContext/MyProfileContext";
+import { authContext } from "../../shared/context/AuthContext/AuthContext";
 
 export default function MobileSidebar({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: Dispatch<SetStateAction<boolean>> }) {
     const { myProfileData } = useContext(profileContext)

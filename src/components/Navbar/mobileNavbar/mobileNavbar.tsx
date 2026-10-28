@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { FiHome, FiUsers, FiUser, FiBell } from "react-icons/fi";
 import { useContext } from "react";
-import { notificationContext } from "../../../shared/context/NotificationContext";
-import { profileContext } from "../../../shared/context/MyProfileContext";
+import { notificationContext } from "../../../shared/context/NotificationContext/NotificationContext";
+import { profileContext } from "../../../shared/context/MyProfileContext/MyProfileContext";
 
 export default function BottomNavbar() {
     const navItems = [

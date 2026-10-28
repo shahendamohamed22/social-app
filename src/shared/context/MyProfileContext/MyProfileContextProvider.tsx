@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import api from "../api/axiosRequest";
+import api from "../../api/axiosRequest";
 import { useContext, type ReactNode } from "react";
-import { profileContext } from "./MyProfileContext"
-import { authContext } from "./AuthContext";
+import { authContext } from "../AuthContext/AuthContext";
+import { profileContext } from "./MyProfileContext";
 
 
 

@@ -1,6 +1,6 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { useContext } from "react";
-import { profileContext } from "../../context/MyProfileContext";
+import { profileContext } from "../../context/MyProfileContext/MyProfileContext";
 
 export default function useInvalidateQueries() {
 

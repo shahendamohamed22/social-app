@@ -13,8 +13,8 @@ export default function AuthLayout() {
     }, [pathname])
 
     return (
-        <div className="lg:container mx-auto flex items-center justify-center gap-15 px-6 py-6  min-h-screen">
-            <section className=" hidden md:block  p-4 rounded-4xl flex-1 lg:flex-2">
+        <div className="lg:container mx-auto flex items-center justify-center gap-15 px-6 py-6 min-h-screen">
+            <section className="hidden md:block p-4 rounded-4xl flex-1 lg:flex-2">
                 <AppIntro />
             </section>
 
@@ -28,15 +28,15 @@ export default function AuthLayout() {
                         Your people. Your moments.
                     </p>
                 </header>
-                <div className=" bg-white/50 p-4 rounded-4xl shadow-2xl  ">
+                <div className="bg-card/80 p-4 rounded-4xl shadow-2xl">
 
-                    <div className="bg-gray-200/65 rounded-2xl p-1 flex gap-2 shadow">
+                    <div className="bg-background rounded-2xl p-1 flex gap-2 shadow">
                         <Link to={"/auth/login"} onClick={() => { setForm("/auth/login"); }}
                             className={`px-5 py-3 text-center text-1xl flex-1 rounded-2xl font-medium transition-all duration-300 
-                        ${form === "/auth/login" ? "bg-white text-primary" : "text-black"}`}>Login</Link>
+                ${form === "/auth/login" ? "bg-primary text-white" : "text-heading"}`}>Login</Link>
                         <Link to={"/auth/register"} onClick={() => { setForm("/auth/register"); }}
-                            className={`text-center  text-1xl px-5 py-3 flex-1 rounded-2xl font-medium transition-all duration-300
-                        ${form === "/auth/register" ? "bg-white text-primary" : "text-black"}`}>Register</Link>
+                            className={`text-center text-1xl px-5 py-3 flex-1 rounded-2xl font-medium transition-all duration-300
+                ${form === "/auth/register" ? "bg-primary text-white" : "text-heading"}`}>Register</Link>
                     </div>
 
                     <Outlet />

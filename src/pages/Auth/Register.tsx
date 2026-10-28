@@ -8,7 +8,7 @@ import base_Url from "../../shared/api/baseURL";
 import { Spinner, toast } from "@heroui/react";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { authContext } from "../../shared/context/AuthContext";
+import { authContext } from "../../shared/context/AuthContext/AuthContext";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 export default function Register() {

@@ -1,6 +1,6 @@
 
 import { useContext } from "react";
-import { profileContext } from "../../shared/context/MyProfileContext";
+import { profileContext } from "../../shared/context/MyProfileContext/MyProfileContext";
 import { useParams } from "react-router-dom";
 import Posts from "./Posts/Posts";
 import { Skeleton } from "@heroui/react";

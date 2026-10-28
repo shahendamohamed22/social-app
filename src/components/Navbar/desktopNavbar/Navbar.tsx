@@ -7,8 +7,8 @@ import {
   FiMenu,
 } from "react-icons/fi";
 import { Link, NavLink } from "react-router-dom";
-import { profileContext } from "../../../shared/context/MyProfileContext";
-import { notificationContext } from "../../../shared/context/NotificationContext";
+import { profileContext } from "../../../shared/context/MyProfileContext/MyProfileContext";
+import { notificationContext } from "../../../shared/context/NotificationContext/NotificationContext";
 import NotificationsDropdown from "../../Notifications/NotificationsDropdown";
 import MobileSidebar from "../../MobileSidebar/MobileSidebar";
 

@@ -10,8 +10,8 @@ import {
   FiChevronRight,
 } from "react-icons/fi";
 
-import { authContext } from "../../../shared/context/AuthContext";
-import { profileContext } from "../../../shared/context/MyProfileContext";
+import { authContext } from "../../../shared/context/AuthContext/AuthContext";
+import { profileContext } from "../../../shared/context/MyProfileContext/MyProfileContext";
 
 const links = [
   { title: "My Posts", to: "/profile?tab=posts", icon: FiFileText },

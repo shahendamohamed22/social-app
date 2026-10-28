@@ -1,7 +1,7 @@
 import ChangePassword from "./ChangePassword/ChangePassword";
+import SettingsAppearance from "./SettingsAppearance/SettingsAppearance ";
 
 export default function Settings() {
-
 
     return (
         <>
@@ -19,6 +19,8 @@ export default function Settings() {
                 </div>
 
                 <ChangePassword />
+                <SettingsAppearance />
+
             </div>
         </>
     );

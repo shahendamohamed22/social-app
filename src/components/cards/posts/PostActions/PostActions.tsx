@@ -3,7 +3,7 @@ import useLike from "../../../../shared/Hooks/ActionsHooks/useLike";
 import useBookmark from "../../../../shared/Hooks/ActionsHooks/useBookMark";
 import { useContext, useState } from "react";
 import type { IPostCardProps } from "../../../../interfaces/post";
-import { profileContext } from "../../../../shared/context/MyProfileContext";
+import { profileContext } from "../../../../shared/context/MyProfileContext/MyProfileContext";
 import { Link } from "react-router-dom";
 import useShare from "../../../../shared/Hooks/ActionsHooks/useShare";
 import ReusableModal from "../../../ReusableModal/ReusableModal";

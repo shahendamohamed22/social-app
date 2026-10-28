@@ -1,6 +1,6 @@
 import { useContext, useId, useState } from "react";
 import { FiImage, FiGlobe } from "react-icons/fi";
-import { profileContext } from "../../shared/context/MyProfileContext";
+import { profileContext } from "../../shared/context/MyProfileContext/MyProfileContext";
 import useCreatePost from "../../shared/Hooks/PostHooks/useCreatePosts";
 import usePostActions from "../../shared/Hooks/PostHooks/usePostActions";
 import { toast } from "@heroui/react";
