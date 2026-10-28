@@ -2,11 +2,11 @@ import type { IPost, IPostsProps } from "../../../interfaces/post"
 import PostCard from "../../../components/cards/posts/PostCard"
 import CreatePost from "../../../components/createPost/CreatePost"
 import { Skeleton } from "@heroui/react"
-import useGetPosts from "../../../shared/Hooks/PostHooks/useGetPosts"
+import useUserPosts from "../../../shared/Hooks/PostHooks/useUserPosts"
 
 export default function Posts({ id, isMyProfile }: IPostsProps) {
 
-    const { posts, postIsLoading } = useGetPosts("", id);
+    const { posts, postIsLoading } = useUserPosts(id);
 
     if (postIsLoading) {
         return <div className="space-y-4 rounded-2xl bg-card p-4">

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { FiChevronDown, FiLock } from "react-icons/fi";
 import type { IChangePassword } from "../../../interfaces/auth";
 import { changePasswordDefaultValues } from "../../../defaultValues/defaultValues";
-import { zodResolver } from "@hookform/resolvers/zod/src/zod.js";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { changePasswordSchema } from "../../../validation/changePasswordSchema";
 import { useMutation } from "@tanstack/react-query";
 import api from "../../../shared/api/axiosRequest";

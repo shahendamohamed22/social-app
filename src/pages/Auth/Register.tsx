@@ -31,14 +31,13 @@ export default function Register() {
     try {
       setIsLoading(true);
       const { data } = await axios.post(`${base_Url}users/signup`, formData)
-      console.log(data);
 
       toast.success(data.message);
       login(data.data.token)
 
       setTimeout(() => {
         navigate("/")
-      }, 2000)
+      }, 1000)
 
     } catch (error) {
       if (isAxiosError(error)) {

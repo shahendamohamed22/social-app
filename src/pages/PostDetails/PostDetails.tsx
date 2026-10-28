@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
 import PostDetilsCard from "../../components/cards/posts/PostDetilsCard";
-import useGetPosts from "../../shared/Hooks/PostHooks/useGetPosts";
+import useGetPost from "../../shared/Hooks/PostHooks/useGetPosts";
 
 export default function PostDetails() {
 
   const { postId } = useParams();
 
-  const {post , PostDetailsIsLoading} = useGetPosts(postId , "")
+  const {post , PostDetailsIsLoading} = useGetPost(postId)
 
   if (PostDetailsIsLoading) {
     return <div className="animate-pulse rounded-2xl bg-card p-4 space-y-4">

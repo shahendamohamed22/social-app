@@ -1,15 +1,15 @@
 import PostCard from "../../../components/cards/posts/PostCard";
 import type { IPost } from "../../../interfaces/post";
 import { Skeleton } from "@heroui/react";
-import useGetPosts from "../../../shared/Hooks/PostHooks/useGetPosts";
 import { useContext } from "react";
 import { authContext } from "../../../shared/context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import CreatePost from "../../../components/createPost/CreatePost";
+import useFeedPosts from "../../../shared/Hooks/PostHooks/useFeedPosts";
 
 export default function Feeds() {
 
-    const { feeds, feedsIsLoading, isError } = useGetPosts("", "");
+    const { feeds, feedsIsLoading, isError } = useFeedPosts();
     const { logout } = useContext(authContext)
     const navigate = useNavigate()
 

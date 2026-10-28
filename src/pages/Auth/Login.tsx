@@ -23,8 +23,6 @@ export default function Login() {
   });
 
   async function submitForm(formData: ILogin) {
-    console.log(formData);
-
     if (isLoading) return;
 
     try {
@@ -37,7 +35,7 @@ export default function Login() {
 
       setTimeout(() => {
         navigate("/")
-      }, 2000)
+      }, 1000)
 
     } catch (error) {
       console.log(error);

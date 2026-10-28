@@ -21,7 +21,7 @@ export default function CreatePost({ isEdit, setIsEdit, post }: ICratePostProps)
 
     function handleCreatePost() {
 
-        if (!postText.trim() && !post.body && !postPhoto && !post.image) {
+        if (!postText.trim() && !post?.body && !postPhoto && !post?.image) {
             toast.danger("Please add text or an image");
             return;
         }
@@ -96,7 +96,7 @@ export default function CreatePost({ isEdit, setIsEdit, post }: ICratePostProps)
             {/* Image Preview Placeholder */}
             {(postPhoto || post?.image) &&
                 <label htmlFor={photoInputId} className="relative mt-4 flex h-25 w-25 items-center justify-center rounded-xl bg-primary/10 text-primary cursor-pointer">
-                    <img src={postPhoto ? postImagePreview : post.image} alt="post photo" className="object-contain rounded-xl w-full h-full" />
+                    <img src={postPhoto ? postImagePreview : post?.image} alt="post photo" className="object-contain rounded-xl w-full h-full" />
                     <button
                         type="button"
                         onClick={removePhoto}

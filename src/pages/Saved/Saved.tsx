@@ -12,17 +12,17 @@ export default function Saved() {
             <title>Loop | Saved posts</title>
             <div className="mx-auto max-w-7xl space-y-4 ">
                 <div className="mb-6">
-                    <h2 className="text-2xl font-bold text-gray-900">
+                    <h2 className="text-2xl font-bold text-heading">
                         Saved Posts
                     </h2>
-                    <p className="mt-1 text-sm font-medium text-gray-500">
+                    <p className="mt-1 text-sm font-medium text-paragraph">
                         All the posts you saved in one place.
                     </p>
                 </div>
 
                 {isLoading ?
                     ([1, 2, 3].map(() =>
-                        <div className="rounded-xl bg-white p-4 shadow-sm space-y-3">
+                        <div className="rounded-xl bg-card p-4 shadow-sm space-y-3">
                             <Skeleton className="h-4 w-full rounded-lg" />
                             <Skeleton className="h-4 w-3/4 rounded-lg" />
                             <div className="flex items-center gap-3">
@@ -34,7 +34,7 @@ export default function Saved() {
                             </div>
                         </div>)) : posts?.length > 0 ? (posts.map((post: IPost) => (
                             <SavedCard key={post._id} post={post} />)))
-                        : <h3 className="text-paragraph text-center font-medium">"There is no saved posts yet"</h3>}
+                        : <h3 className="text-paragraph text-center font-medium">There is no saved posts yet</h3>}
             </div>
         </>
     )
