@@ -8,11 +8,11 @@ export default function SavedCard({ post }: IPostProps) {
     const { bookmark , bookmarkIsPending } = useBookmark()
     
     return (
-        <article className="overflow-hidden rounded-xl bg-white shadow-sm transition hover:shadow-md">
+        <article className="overflow-hidden rounded-xl bg-card shadow-sm transition hover:shadow-md">
             {/* Post Content */}
             <div className="flex items-start gap-4 p-4 sm:p-5">
                 <div className="flex min-w-0 flex-1 flex-col justify-between">
-                    <p className="line-clamp-5 whitespace-pre-line text-sm leading-6 text-gray-700 sm:text-base">
+                    <p className="line-clamp-5 whitespace-pre-line text-sm leading-6 text-paragraph sm:text-base">
                         {post.body}
                     </p>
 
@@ -24,10 +24,10 @@ export default function SavedCard({ post }: IPostProps) {
                         />
 
                         <div className="min-w-0">
-                            <p className="text-xs text-gray-400">
+                            <p className="text-xs text-paragraph">
                                 Saved from
                             </p>
-                            <p className="truncate text-sm font-semibold text-gray-900">
+                            <p className="truncate text-sm font-semibold text-heading">
                                 {post.user.name}
                             </p>
                         </div>
@@ -47,7 +47,7 @@ export default function SavedCard({ post }: IPostProps) {
 
             {/* Bottom Action */}
 
-            <div className="border-t border-gray-100 px-4 py-2.5 sm:px-5">
+            <div className="border-t border-input px-4 py-2.5 sm:px-5">
                 <button
                     type="button"
                     onClick={() => bookmark(post._id)}
